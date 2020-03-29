@@ -185,9 +185,15 @@ public class NuevaReserva extends javax.swing.JFrame {
     public void setjSpinnerHabitaciones(JSpinner jSpinnerHabitaciones) {
         this.jSpinnerHabitaciones = jSpinnerHabitaciones;
     }
-    
-    
-    
+
+    public JSpinner getjSpinnerAsistentes() {
+        return jSpinnerAsistentes;
+    }
+
+    public void setjSpinnerAsistentes(JSpinner jSpinnerAsistentes) {
+        this.jSpinnerAsistentes = jSpinnerAsistentes;
+    }
+
     
 
     
@@ -224,38 +230,39 @@ public class NuevaReserva extends javax.swing.JFrame {
     
     public void comprobarSeleccionados(){
         int contador=0;
+
         if (jCheckBoxPlato1.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato1.setSelected(false);
             }
             contador++;
         }
         if (jCheckBoxPlato2.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato2.setSelected(false);
             }
             contador++;
         }
         if (jCheckBoxPlato3.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato3.setSelected(false);
             }
             contador++;
         }
         if (jCheckBoxPlato4.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato4.setSelected(false);
             }
             contador++;
         }
         if (jCheckBoxPlato5.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato5.setSelected(false);
             }
             contador++;
         }
         if (jCheckBoxPlato6.isSelected()) {
-            if(contador>=2){
+            if(contador==2){
                 jCheckBoxPlato6.setSelected(false);
             }
             contador++;
@@ -404,12 +411,14 @@ public class NuevaReserva extends javax.swing.JFrame {
         jSpinnerAsistentes = new javax.swing.JSpinner();
         jTextFieldNombreEvento = new javax.swing.JTextField();
         jLabelNombreEvento = new javax.swing.JLabel();
+        jLabelAvisoNombre = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
         jPanelDni = new javax.swing.JPanel();
         jLabelDni = new javax.swing.JLabel();
         jTextFieldDni = new javax.swing.JTextField();
         jLabelDatosCliente = new javax.swing.JLabel();
         miImagenPanel1 = new hotel105.vista.MiImagenPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -612,6 +621,8 @@ public class NuevaReserva extends javax.swing.JFrame {
 
         jLabelNombreEvento.setText("Nombre del evento:");
 
+        jLabelAvisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanelRestoDeCamposLayout = new javax.swing.GroupLayout(jPanelRestoDeCampos);
         jPanelRestoDeCampos.setLayout(jPanelRestoDeCamposLayout);
         jPanelRestoDeCamposLayout.setHorizontalGroup(
@@ -639,7 +650,9 @@ public class NuevaReserva extends javax.swing.JFrame {
                             .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
                                 .addComponent(jLabelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(112, 112, 112)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -662,12 +675,11 @@ public class NuevaReserva extends javax.swing.JFrame {
                         .addComponent(jPanelPlatosMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRestoDeCamposLayout.createSequentialGroup()
-                        .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelNombreEvento))
-                        .addContainerGap())))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNombreEvento)))
+                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jButtonAceptar.setText("Aceptar");
@@ -693,8 +705,9 @@ public class NuevaReserva extends javax.swing.JFrame {
             jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTodoLayout.createSequentialGroup()
                 .addComponent(jPanelRestoDeCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(jButtonAceptar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAceptar)
+                .addGap(45, 45, 45))
         );
 
         jLabelDni.setText("DNI: ");
@@ -746,6 +759,9 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Nueva reserva");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -755,15 +771,19 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -811,6 +831,7 @@ public class NuevaReserva extends javax.swing.JFrame {
         }
         if (d.getDiaSeleccionado()!=null && platosSeleccionados.size()==2) {
                 jButtonAceptar.setVisible(true);
+                jButtonAceptar.setEnabled(false);
         }
             
     }//GEN-LAST:event_jRadioButtonHabitacionesNoActionPerformed
@@ -830,14 +851,19 @@ public class NuevaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDisponibilidadActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        insertarEvento();
-        insertarReserva();
-        insertarHabitaciones();
-        insertarBanquete();
-        ventanaPrincipal.getModel().refreshTableModel(ventanaPrincipal.getHotel());
-        ventanaPrincipal.getModeloProximas().refreshTableModel(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
-        ventanaPrincipal.porcentajeReservas();
-        dispose();
+        if (!jTextFieldNombreEvento.getText().isBlank()) {
+            insertarEvento();
+            insertarReserva();
+            insertarHabitaciones();
+            insertarBanquete();
+            ventanaPrincipal.getModel().refreshTableModel(ventanaPrincipal.getHotel());
+            ventanaPrincipal.getModeloProximas().refreshTableModel(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
+            ventanaPrincipal.porcentajeReservas();
+            dispose();
+        }else{
+            jLabelAvisoNombre.setText("El nombre del evento no puede estar vacío");
+        }
+        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jSliderDiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderDiasMouseClicked
@@ -850,6 +876,7 @@ public class NuevaReserva extends javax.swing.JFrame {
             jTextFieldDni.setEnabled(false);
             jSpinnerAsistentes.setEnabled(true);
             jButtonDisponibilidad.setEnabled(true);
+            jLabelAsistentes.setEnabled(true);
             Cliente c = ventanaPrincipal.getHotel().devolverCliente(jTextFieldDni.getText());
             jLabelDatosCliente.setText("Nombre: " + c.getNombre() + " " + c.getApellidos());
             jPanelRestoDeCampos.setVisible(true);
@@ -869,16 +896,13 @@ public class NuevaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreEventoActionPerformed
 
     private void jTextFieldNombreEventoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoPropertyChange
-
+       
     }//GEN-LAST:event_jTextFieldNombreEventoPropertyChange
 
     private void jTextFieldNombreEventoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoKeyPressed
-        if(!jTextFieldNombreEvento.getText().isEmpty())
-            jButtonAceptar.setVisible(true);
-        else
-            jButtonAceptar.setVisible(false);
-    }//GEN-LAST:event_jTextFieldNombreEventoKeyPressed
 
+    }//GEN-LAST:event_jTextFieldNombreEventoKeyPressed
+   
     /**
      * @param args the command line arguments
      */
@@ -926,7 +950,9 @@ public class NuevaReserva extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxPlato6;
     private javax.swing.JComboBox<String> jComboBoxEvento;
     private javax.swing.JComboBox<String> jComboBoxHabitaciones;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelAsistentes;
+    private javax.swing.JLabel jLabelAvisoNombre;
     private javax.swing.JLabel jLabelBanquete;
     private javax.swing.JLabel jLabelDatosCliente;
     private javax.swing.JLabel jLabelDni;

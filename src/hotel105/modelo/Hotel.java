@@ -54,6 +54,7 @@ public class Hotel {
     }
 
     public ArrayList<Reserva> getReservas() {
+        reservas = obtenerReservas();
         return reservas;
     }
 
@@ -77,6 +78,7 @@ public class Hotel {
         }finally{
             m.cerrarConexion();
         }
+        
         return model;
     }
         

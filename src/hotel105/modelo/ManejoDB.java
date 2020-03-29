@@ -76,6 +76,48 @@ public class ManejoDB {
         return clientes;
     }
     
+    public String obtenerNombreCliente(int id){
+        String nombre="";
+        try{
+            conexion();
+            this.sentencia = conexion.createStatement();
+            PreparedStatement ps = conexion.prepareStatement("SELECT clientes.nombre, clientes.apellidos FROM clientes, reservas WHERE clientes.id=reservas.id_cliente AND reservas.id_evento=?;");
+            ps.setInt(1, id);
+            
+            resultset = ps.executeQuery();
+            
+            while(resultset.next()){
+                    nombre = resultset.getString(1) + " " + resultset.getString(2);
+                }
+        }catch(ClassNotFoundException cnfe){
+            cnfe.getMessage();
+        }catch(SQLException sqle){
+            sqle.getMessage();
+        }
+        return nombre;
+    }
+    
+    public String obtenerNombreSalon(int id){
+        String nombre="";
+        try{
+            conexion();
+            this.sentencia = conexion.createStatement();
+            PreparedStatement ps = conexion.prepareStatement("SELECT salones.nombre FROM salones, reservas WHERE salones.id=reservas.id_salon AND reservas.id_evento=?;");
+            ps.setInt(1, id);
+            
+            resultset = ps.executeQuery();
+            
+            while(resultset.next()){
+                    nombre = resultset.getString(1);
+                }
+        }catch(ClassNotFoundException cnfe){
+            cnfe.getMessage();
+        }catch(SQLException sqle){
+            sqle.getMessage();
+        }
+        return nombre;
+    }
+    
     public ArrayList obtenerEventosConReserva() throws SQLException {
         ArrayList<Evento> eventos = new ArrayList();
         try{
@@ -235,6 +277,21 @@ public class ManejoDB {
             ps.setString(1, fecha);
             int numeroSalon = Integer.parseInt(salon);
             ps.setInt(2, numeroSalon);
+            
+            int resultado = ps.executeUpdate();
+        }catch(SQLException e){
+            e.getMessage();
+        }catch(ClassNotFoundException e){
+            e.getMessage();
+        }
+    }
+    
+    public void eliminarEvento(int id){
+        try{
+            conexion();
+            PreparedStatement ps = conexion.prepareStatement("DELETE FROM eventos WHERE id=?;");
+            
+            ps.setInt(1, id);
             
             int resultado = ps.executeUpdate();
         }catch(SQLException e){

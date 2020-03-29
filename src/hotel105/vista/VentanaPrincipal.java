@@ -42,6 +42,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         jTableReservas.setModel(model);
         jTableClientes.setModel(hotel.obtenerClientes());  
+        jTableClientes.setDefaultEditor(Object.class, null);
         jTableProximosEventos.setModel(modeloProximas);
         modeloProximas.refreshTableModel(hotel, jComboBoxSalon.getSelectedIndex()+1);
         
@@ -170,6 +171,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPanelReservas.setPreferredSize(new java.awt.Dimension(470, 499));
+
         jTableReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -204,26 +207,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPanelReservas.addTab("Reservas", jPanel1);
@@ -247,14 +248,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -310,7 +311,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(109, 109, 109)
                         .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,7 +384,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPanelReservas)
+                .addComponent(jTabbedPanelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -429,10 +430,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int row = jTableReservas.getSelectedRow();
             String fecha=String.valueOf(model.getValueAt(row,1));
             String salon = String.valueOf(model.getValueAt(row,4));
-            m.eliminarReserva(fecha, salon);
-            hotel.getReservas().remove(row);
+            for (int i = 0; i < hotel.getEventos().size(); i++) {
+                if (hotel.getEventos().get(i).getId()==hotel.getReservas().get(row).getIdEvento()) {
+                    hotel.getEventos().remove(i);
+                }
+            }
+             hotel.getReservas().remove(row);
+            m.eliminarEvento(Integer.parseInt(String.valueOf(model.getValueAt(row, 0))));
             model.refreshTableModel(hotel);
-
+            jTextAreaInformacion.setText("");
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -449,20 +455,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ArrayList<HabitacionCongreso> habitaciones = hotel.obtenerHabitaciones();
         if (jTabbedPanelReservas.getSelectedIndex()>=0){
             Reserva r = hotel.getReservas().get(jTableReservas.getSelectedRow());
+            Evento e = null;
+            for (int i = 0; i < hotel.getEventos().size(); i++) {
+                if (hotel.getEventos().get(i).getId()==r.getId()) {
+                    e=hotel.getEventos().get(i);
+                }
+            }
+            String nombreCliente = m.obtenerNombreCliente(r.getId());
+            String nombreSalon = m.obtenerNombreSalon(r.getId());
+            int asistentes = e.getAsistentes();
+            
             if (r.getTipo().equals(TipoEvento.Banquete.toString())) {
                 for (int i = 0; i < menus.size(); i++) {
                     if (r.getIdEvento()==menus.get(i).getIdEvento()) {
-                        jTextAreaInformacion.setText("Primer plato: " + menus.get(i).getPrimero() + "\nSegundo plato: " + menus.get(i).getSegundo());
+                        jTextAreaInformacion.setText("Cliente: " + nombreCliente  + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes + "\nPrimer plato: " + menus.get(i).getPrimero() + "\nSegundo plato: " + menus.get(i).getSegundo());
                     }
                 }
             }else if(r.getTipo().equals(TipoEvento.Congreso.toString())){
                 for (int i = 0; i < habitaciones.size(); i++) {
                     if (r.getIdEvento()==habitaciones.get(i).getIdEvento()) {
-                        jTextAreaInformacion.setText("Número de habitaciones: " + habitaciones.get(i).getNumeroHab()+ "\nTipo de habitaciones: " + habitaciones.get(i).getTipo().toString());
+                        jTextAreaInformacion.setText("Cliente: " + nombreCliente + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes + "\nNúmero de habitaciones: " + habitaciones.get(i).getNumeroHab()+ "\nTipo de habitaciones: " + habitaciones.get(i).getTipo().toString());
                     }
                 }
             }else if(r.getTipo().equals(TipoEvento.Jornada.toString())){
-                 jTextAreaInformacion.setText("");
+                 jTextAreaInformacion.setText("Cliente: " + nombreCliente + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes);
             }
             
         }

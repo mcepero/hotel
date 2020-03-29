@@ -16,6 +16,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -194,6 +195,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         for (int i = 0; i < botonesSalon1.size(); i++) {
             if (botonesSalon1.get(i).isSelected()) {
                 j = botonesSalon1.get(i);
+                SpinnerNumberModel model = new SpinnerNumberModel(Integer.parseInt(String.valueOf(nuevaReserva.getjSpinnerAsistentes().getValue())), 0, 100, 1);  
+                nuevaReserva.getjSpinnerAsistentes().setModel(model);
                 return j;
             }
         }
@@ -201,6 +204,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         for (int i = 0; i < botonesSalon2.size(); i++) {
             if (botonesSalon2.get(i).isSelected()) {
                 j = botonesSalon2.get(i);
+                SpinnerNumberModel model = new SpinnerNumberModel(Integer.parseInt(String.valueOf(nuevaReserva.getjSpinnerAsistentes().getValue())), 0, 150, 1);  
+                nuevaReserva.getjSpinnerAsistentes().setModel(model);
                 return j;
             }
         }
@@ -208,6 +213,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         for (int i = 0; i < botonesSalon3.size(); i++) {
             if (botonesSalon3.get(i).isSelected()) {
                 j = botonesSalon3.get(i);
+                SpinnerNumberModel model = new SpinnerNumberModel(Integer.parseInt(String.valueOf(nuevaReserva.getjSpinnerAsistentes().getValue())), 0, 250, 1);  
+                nuevaReserva.getjSpinnerAsistentes().setModel(model);
                 return j;
             }
         }
@@ -215,6 +222,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         for (int i = 0; i < botonesSalon4.size(); i++) {
             if (botonesSalon4.get(i).isSelected()) {
                 j = botonesSalon4.get(i);
+                SpinnerNumberModel model = new SpinnerNumberModel(Integer.parseInt(String.valueOf(nuevaReserva.getjSpinnerAsistentes().getValue())), 0, 500, 1);  
+                nuevaReserva.getjSpinnerAsistentes().setModel(model);
                 return j;
             }
         }

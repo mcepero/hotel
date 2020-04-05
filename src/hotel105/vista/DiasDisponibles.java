@@ -7,6 +7,7 @@ package hotel105.vista;
 
 import hotel105.modelo.Evento;
 import hotel105.modelo.Hotel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
@@ -70,7 +71,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
         
         
         for (int i = 0; i < 4; i++) {
-           diasSemana+=" V    S    D   ";
+           diasSemana+=" V     S     D    ";
         }
         
         jLabelDiasSemana.setText(diasSemana);
@@ -176,15 +177,15 @@ public class DiasDisponibles extends javax.swing.JFrame {
             
         comprobarDisponibilidad();
         
-        String nDias="";
+        String nDias=" ";
         for (int i = 0; i < 12; i++) {
-            nDias+=numerosDias[i].getDate() + "   ";
+            nDias+=numerosDias[i].getDate() + "    ";
         }
         jLabelNumeroDia.setText(nDias);
         
         nDias=" ";
         for (int i = 12; i < 24; i++) {
-            nDias+=numerosDias[i].getDate()+ "   ";
+            nDias+=numerosDias[i].getDate()+ "    ";
         }
         jLabelNumeroDia2.setText(nDias);
 
@@ -366,8 +367,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jRadioButtonS4Dia2 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia3 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia4 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia5 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia6 = new javax.swing.JRadioButton();
+        jRadioButtonS4Dia5 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia7 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia8 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia9 = new javax.swing.JRadioButton();
@@ -418,8 +419,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jRadioButtonS4Dia14 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia15 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia16 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia17 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia18 = new javax.swing.JRadioButton();
+        jRadioButtonS4Dia17 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia19 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia20 = new javax.swing.JRadioButton();
         jRadioButtonS4Dia21 = new javax.swing.JRadioButton();
@@ -429,6 +430,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jLabelDiasSemana2 = new javax.swing.JLabel();
         jLabelNumeroDia2 = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabelNumeroSemanas = new javax.swing.JLabel();
         jButtonSiguientesSemanas = new javax.swing.JButton();
         jButtonAnterioresSemanas = new javax.swing.JButton();
@@ -442,101 +444,149 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jLabelSalon3.setText("Asgard");
 
         buttonGroupSemana.add(jRadioButtonS1Dia1);
+        jRadioButtonS1Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
         jRadioButtonS1Dia1.setName(""); // NOI18N
 
         buttonGroupSemana.add(jRadioButtonS1Dia2);
+        jRadioButtonS1Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia3);
+        jRadioButtonS1Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia4);
+        jRadioButtonS1Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia5);
+        jRadioButtonS1Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia6);
+        jRadioButtonS1Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia7);
+        jRadioButtonS1Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia8);
+        jRadioButtonS1Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia9);
+        jRadioButtonS1Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia10);
+        jRadioButtonS1Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia11);
+        jRadioButtonS1Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia12);
+        jRadioButtonS1Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia1);
+        jRadioButtonS2Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia2);
+        jRadioButtonS2Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia3);
+        jRadioButtonS2Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia4);
+        jRadioButtonS2Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia5);
+        jRadioButtonS2Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia6);
+        jRadioButtonS2Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia7);
+        jRadioButtonS2Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia8);
+        jRadioButtonS2Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia9);
+        jRadioButtonS2Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia10);
+        jRadioButtonS2Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia11);
+        jRadioButtonS2Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia12);
+        jRadioButtonS2Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia1);
+        jRadioButtonS3Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia2);
+        jRadioButtonS3Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia3);
+        jRadioButtonS3Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia4);
+        jRadioButtonS3Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia5);
+        jRadioButtonS3Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia6);
+        jRadioButtonS3Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia7);
+        jRadioButtonS3Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia8);
+        jRadioButtonS3Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia9);
+        jRadioButtonS3Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia10);
+        jRadioButtonS3Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia11);
+        jRadioButtonS3Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia12);
+        jRadioButtonS3Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia1);
+        jRadioButtonS4Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia2);
+        jRadioButtonS4Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia3);
+        jRadioButtonS4Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia4);
-
-        buttonGroupSemana.add(jRadioButtonS4Dia5);
+        jRadioButtonS4Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia6);
+        jRadioButtonS4Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
+
+        buttonGroupSemana.add(jRadioButtonS4Dia5);
+        jRadioButtonS4Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia7);
+        jRadioButtonS4Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia8);
+        jRadioButtonS4Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia9);
+        jRadioButtonS4Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia10);
+        jRadioButtonS4Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia11);
+        jRadioButtonS4Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia12);
+        jRadioButtonS4Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         javax.swing.GroupLayout jPanelPrimeros8DiasLayout = new javax.swing.GroupLayout(jPanelPrimeros8Dias);
         jPanelPrimeros8Dias.setLayout(jPanelPrimeros8DiasLayout);
@@ -545,7 +595,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelDiasSemana, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(jLabelDiasSemana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
                         .addComponent(jRadioButtonS1Dia1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -617,9 +667,9 @@ public class DiasDisponibles extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButtonS4Dia4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia6)
+                                .addComponent(jRadioButtonS4Dia5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia5)))
+                                .addComponent(jRadioButtonS4Dia6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
@@ -723,8 +773,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jRadioButtonS4Dia6)
                                         .addComponent(jRadioButtonS4Dia5)
+                                        .addComponent(jRadioButtonS4Dia6)
                                         .addComponent(jRadioButtonS4Dia4)
                                         .addComponent(jRadioButtonS4Dia3)
                                         .addComponent(jRadioButtonS4Dia2)
@@ -736,100 +786,148 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jLabelSalon4.setText("Namek");
 
         buttonGroupSemana.add(jRadioButtonS1Dia13);
+        jRadioButtonS1Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia14);
+        jRadioButtonS1Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia15);
+        jRadioButtonS1Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia16);
+        jRadioButtonS1Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia17);
+        jRadioButtonS1Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia18);
+        jRadioButtonS1Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia19);
+        jRadioButtonS1Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia20);
+        jRadioButtonS1Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia21);
+        jRadioButtonS1Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia22);
+        jRadioButtonS1Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia23);
+        jRadioButtonS1Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS1Dia24);
+        jRadioButtonS1Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia13);
+        jRadioButtonS2Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia14);
+        jRadioButtonS2Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia15);
+        jRadioButtonS2Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia16);
+        jRadioButtonS2Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia17);
+        jRadioButtonS2Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia18);
+        jRadioButtonS2Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia19);
+        jRadioButtonS2Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia20);
+        jRadioButtonS2Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia21);
+        jRadioButtonS2Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia22);
+        jRadioButtonS2Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia23);
+        jRadioButtonS2Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS2Dia24);
+        jRadioButtonS2Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia13);
+        jRadioButtonS3Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia14);
+        jRadioButtonS3Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia15);
+        jRadioButtonS3Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia16);
+        jRadioButtonS3Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia17);
+        jRadioButtonS3Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia18);
+        jRadioButtonS3Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia19);
+        jRadioButtonS3Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia20);
+        jRadioButtonS3Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia21);
+        jRadioButtonS3Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia22);
+        jRadioButtonS3Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia23);
+        jRadioButtonS3Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS3Dia24);
+        jRadioButtonS3Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia13);
+        jRadioButtonS4Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia14);
+        jRadioButtonS4Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia15);
+        jRadioButtonS4Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia16);
-
-        buttonGroupSemana.add(jRadioButtonS4Dia17);
+        jRadioButtonS4Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia18);
+        jRadioButtonS4Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
+
+        buttonGroupSemana.add(jRadioButtonS4Dia17);
+        jRadioButtonS4Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia19);
+        jRadioButtonS4Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia20);
+        jRadioButtonS4Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia21);
+        jRadioButtonS4Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia22);
+        jRadioButtonS4Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia23);
+        jRadioButtonS4Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         buttonGroupSemana.add(jRadioButtonS4Dia24);
+        jRadioButtonS4Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
 
         javax.swing.GroupLayout jPanelSegundos8DiasLayout = new javax.swing.GroupLayout(jPanelSegundos8Dias);
         jPanelSegundos8Dias.setLayout(jPanelSegundos8DiasLayout);
@@ -838,7 +936,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSegundos8DiasLayout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelDiasSemana2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(jLabelDiasSemana2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
                         .addComponent(jRadioButtonS1Dia13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -910,9 +1008,9 @@ public class DiasDisponibles extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButtonS4Dia16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia18)
+                                .addComponent(jRadioButtonS4Dia17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia17)))
+                                .addComponent(jRadioButtonS4Dia18)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
@@ -1016,8 +1114,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jRadioButtonS4Dia18)
                                         .addComponent(jRadioButtonS4Dia17)
+                                        .addComponent(jRadioButtonS4Dia18)
                                         .addComponent(jRadioButtonS4Dia16)
                                         .addComponent(jRadioButtonS4Dia15)
                                         .addComponent(jRadioButtonS4Dia14)
@@ -1030,6 +1128,13 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -1050,8 +1155,10 @@ public class DiasDisponibles extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelSegundos8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelTodoLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanelTodoLayout.setVerticalGroup(
@@ -1073,7 +1180,9 @@ public class DiasDisponibles extends javax.swing.JFrame {
                             .addComponent(jPanelSegundos8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanelPrimeros8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jButtonAceptar))
+                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonCancelar)))
         );
 
         jLabelNumeroSemanas.setText("Primeras 4 semanas");
@@ -1113,7 +1222,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
                         .addComponent(jLabelNumeroSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSiguientesSemanas)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1187,8 +1296,14 @@ public class DiasDisponibles extends javax.swing.JFrame {
             }
         }
         salir=true;
+        nuevaReserva.getjLabelDiaSeleccionado().setText("Fecha seleccionada: " + new SimpleDateFormat("dd/MM/yyyy").format(diaSeleccionado));
+        nuevaReserva.comprobarDiasSlider();
         dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     public void activarElementos(){
         nuevaReserva.getjLabelEvento().setEnabled(true);
@@ -1280,6 +1395,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupSemana;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAnterioresSemanas;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSiguientesSemanas;
     private javax.swing.JLabel jLabelDiasSemana;
     private javax.swing.JLabel jLabelDiasSemana2;

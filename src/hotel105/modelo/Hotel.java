@@ -5,6 +5,7 @@
  */
 package hotel105.modelo;
 
+import hotel105.vista.VentanaPrincipal;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Manuel
  */
 public class Hotel {
+    
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Evento> eventos = new ArrayList<>();
     private ArrayList<Reserva> reservas = new ArrayList<>();

@@ -49,14 +49,14 @@ public class NuevaReserva extends javax.swing.JFrame {
         jButtonDisponibilidad.setEnabled(false);
         jLabelEvento.setEnabled(false);
         jComboBoxEvento.setEnabled(false);
-        jCheckBoxPlato1.setEnabled(false);
-        jCheckBoxPlato2.setEnabled(false);
-        jCheckBoxPlato3.setEnabled(false);
-        jCheckBoxPlato4.setEnabled(false);
-        jCheckBoxPlato5.setEnabled(false);
-        jCheckBoxPlato6.setEnabled(false);
-        jLabelBanquete.setEnabled(false);
-        jPanelPlatosMenu.setEnabled(false);
+        jCheckBoxPlato01.setEnabled(false);
+        jCheckBoxPlato02.setEnabled(false);
+        jCheckBoxPlato03.setEnabled(false);
+        jCheckBoxPlato04.setEnabled(false);
+        jCheckBoxPlato05.setEnabled(false);
+        jCheckBoxPlato06.setEnabled(false);
+        jLabelBanquete2.setEnabled(false);
+        jPanelPlatosMenu2.setEnabled(false);
         jSpinnerHabitaciones.setEnabled(false);
         jComboBoxHabitaciones.setEnabled(false);
         jButtonAceptar.setEnabled(false);
@@ -67,6 +67,10 @@ public class NuevaReserva extends javax.swing.JFrame {
         setSize(600, 650);
         rellenarEventos();
         
+        jRadioButtonHabitacionesNo.setSelected(true);
+        jSpinnerHabitaciones.setVisible(false);
+        jComboBoxHabitaciones.setVisible(false);
+
         id = m.obtenerUltimoId()+1;
     }
 
@@ -107,51 +111,51 @@ public class NuevaReserva extends javax.swing.JFrame {
     }
 
     public JCheckBox getjCheckBoxPlato1() {
-        return jCheckBoxPlato1;
+        return jCheckBoxPlato01;
     }
 
     public void setjCheckBoxPlato1(JCheckBox jCheckBoxPlato1) {
-        this.jCheckBoxPlato1 = jCheckBoxPlato1;
+        this.jCheckBoxPlato01 = jCheckBoxPlato1;
     }
 
     public JCheckBox getjCheckBoxPlato2() {
-        return jCheckBoxPlato2;
+        return jCheckBoxPlato02;
     }
 
     public void setjCheckBoxPlato2(JCheckBox jCheckBoxPlato2) {
-        this.jCheckBoxPlato2 = jCheckBoxPlato2;
+        this.jCheckBoxPlato02 = jCheckBoxPlato2;
     }
 
     public JCheckBox getjCheckBoxPlato3() {
-        return jCheckBoxPlato3;
+        return jCheckBoxPlato03;
     }
 
     public void setjCheckBoxPlato3(JCheckBox jCheckBoxPlato3) {
-        this.jCheckBoxPlato3 = jCheckBoxPlato3;
+        this.jCheckBoxPlato03 = jCheckBoxPlato3;
     }
 
     public JCheckBox getjCheckBoxPlato4() {
-        return jCheckBoxPlato4;
+        return jCheckBoxPlato04;
     }
 
     public void setjCheckBoxPlato4(JCheckBox jCheckBoxPlato4) {
-        this.jCheckBoxPlato4 = jCheckBoxPlato4;
+        this.jCheckBoxPlato04 = jCheckBoxPlato4;
     }
 
     public JCheckBox getjCheckBoxPlato5() {
-        return jCheckBoxPlato5;
+        return jCheckBoxPlato05;
     }
 
     public void setjCheckBoxPlato5(JCheckBox jCheckBoxPlato5) {
-        this.jCheckBoxPlato5 = jCheckBoxPlato5;
+        this.jCheckBoxPlato05 = jCheckBoxPlato5;
     }
 
     public JCheckBox getjCheckBoxPlato6() {
-        return jCheckBoxPlato6;
+        return jCheckBoxPlato06;
     }
 
     public void setjCheckBoxPlato6(JCheckBox jCheckBoxPlato6) {
-        this.jCheckBoxPlato6 = jCheckBoxPlato6;
+        this.jCheckBoxPlato06 = jCheckBoxPlato6;
     }
 
     public JComboBox<String> getjComboBoxHabitaciones() {
@@ -171,11 +175,11 @@ public class NuevaReserva extends javax.swing.JFrame {
     }
 
     public JLabel getjLabelBanquete() {
-        return jLabelBanquete;
+        return jLabelBanquete2;
     }
 
     public void setjLabelBanquete(JLabel jLabelBanquete) {
-        this.jLabelBanquete = jLabelBanquete;
+        this.jLabelBanquete2 = jLabelBanquete;
     }
 
     public JSpinner getjSpinnerHabitaciones() {
@@ -194,6 +198,13 @@ public class NuevaReserva extends javax.swing.JFrame {
         this.jSpinnerAsistentes = jSpinnerAsistentes;
     }
 
+    public JLabel getjLabelDiaSeleccionado() {
+        return jLabelDiaSeleccionado;
+    }
+
+    public void setjLabelDiaSeleccionado(JLabel jLabelDiaSeleccionado) {
+        this.jLabelDiaSeleccionado = jLabelDiaSeleccionado;
+    }
     
 
     
@@ -206,22 +217,22 @@ public class NuevaReserva extends javax.swing.JFrame {
     public void eventoSeleccionado(){
         String evento = jComboBoxEvento.getSelectedItem().toString();
         if(evento.equals("Banquete")){
-            jPanelPlatosMenu.setVisible(true);
+            jPanelPlatosMenu2.setVisible(true);
             jPanelDias.setVisible(false);
-            jCheckBoxPlato1.setText(Plato.Ensalada.name());
-            jCheckBoxPlato2.setText(Plato.Filetes.name());
-            jCheckBoxPlato3.setText(Plato.Macarrones.name());
-            jCheckBoxPlato4.setText(Plato.Pescado.name());
-            jCheckBoxPlato5.setText(Plato.Sopa.name());
-            jCheckBoxPlato6.setText(Plato.Tortilla.name());
+            jCheckBoxPlato01.setText(Plato.Ensalada.name());
+            jCheckBoxPlato02.setText(Plato.Filetes.name());
+            jCheckBoxPlato03.setText(Plato.Macarrones.name());
+            jCheckBoxPlato04.setText(Plato.Pescado.name());
+            jCheckBoxPlato05.setText(Plato.Sopa.name());
+            jCheckBoxPlato06.setText(Plato.Tortilla.name());
             
         }else if(evento.equals("Jornada")){
-            jPanelPlatosMenu.setVisible(false);
+            jPanelPlatosMenu2.setVisible(false);
             jPanelDias.setVisible(false);
             jTextFieldNombreEvento.setEnabled(true);
             jLabelNombreEvento.setEnabled(true);
         }else if(evento.equals("Congreso")){
-            jPanelPlatosMenu.setVisible(false);
+            jPanelPlatosMenu2.setVisible(false);
             jPanelDias.setVisible(true);
 
             //comprobarDiasSlider();
@@ -231,39 +242,39 @@ public class NuevaReserva extends javax.swing.JFrame {
     public void comprobarSeleccionados(){
         int contador=0;
 
-        if (jCheckBoxPlato1.isSelected()) {
+        if (jCheckBoxPlato01.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato1.setSelected(false);
+                jCheckBoxPlato01.setSelected(false);
             }
             contador++;
         }
-        if (jCheckBoxPlato2.isSelected()) {
+        if (jCheckBoxPlato02.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato2.setSelected(false);
+                jCheckBoxPlato02.setSelected(false);
             }
             contador++;
         }
-        if (jCheckBoxPlato3.isSelected()) {
+        if (jCheckBoxPlato03.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato3.setSelected(false);
+                jCheckBoxPlato03.setSelected(false);
             }
             contador++;
         }
-        if (jCheckBoxPlato4.isSelected()) {
+        if (jCheckBoxPlato04.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato4.setSelected(false);
+                jCheckBoxPlato04.setSelected(false);
             }
             contador++;
         }
-        if (jCheckBoxPlato5.isSelected()) {
+        if (jCheckBoxPlato05.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato5.setSelected(false);
+                jCheckBoxPlato05.setSelected(false);
             }
             contador++;
         }
-        if (jCheckBoxPlato6.isSelected()) {
+        if (jCheckBoxPlato06.isSelected()) {
             if(contador==2){
-                jCheckBoxPlato6.setSelected(false);
+                jCheckBoxPlato06.setSelected(false);
             }
             contador++;
         }
@@ -313,23 +324,23 @@ public class NuevaReserva extends javax.swing.JFrame {
     
     
     public void comprobarPlatosSeleccionados(){
-        if(jCheckBoxPlato1.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato1.getText());
+        if(jCheckBoxPlato01.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato01.getText());
         }
-        if(jCheckBoxPlato2.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato2.getText());
+        if(jCheckBoxPlato02.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato02.getText());
         }
-        if(jCheckBoxPlato3.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato3.getText());
+        if(jCheckBoxPlato03.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato03.getText());
         }
-        if(jCheckBoxPlato4.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato4.getText());
+        if(jCheckBoxPlato04.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato04.getText());
         }
-        if(jCheckBoxPlato5.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato5.getText());
+        if(jCheckBoxPlato05.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato05.getText());
         }
-        if(jCheckBoxPlato6.isSelected()){
-            platosSeleccionados.add(jCheckBoxPlato6.getText());
+        if(jCheckBoxPlato06.isSelected()){
+            platosSeleccionados.add(jCheckBoxPlato06.getText());
         }
     }
     
@@ -387,11 +398,26 @@ public class NuevaReserva extends javax.swing.JFrame {
 
         buttonGroupHabitaciones = new javax.swing.ButtonGroup();
         jPanelTodo = new javax.swing.JPanel();
-        jPanelRestoDeCampos = new javax.swing.JPanel();
+        jPanelDni = new javax.swing.JPanel();
+        jLabelDni = new javax.swing.JLabel();
+        jTextFieldDni = new javax.swing.JTextField();
+        jLabelDatosCliente = new javax.swing.JLabel();
+        miImagenPanel1 = new hotel105.vista.MiImagenPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelAsistentes = new javax.swing.JLabel();
+        jSpinnerAsistentes = new javax.swing.JSpinner();
+        jButtonDisponibilidad = new javax.swing.JButton();
         jComboBoxEvento = new javax.swing.JComboBox<>();
         jLabelEvento = new javax.swing.JLabel();
-        jLabelAsistentes = new javax.swing.JLabel();
-        jButtonDisponibilidad = new javax.swing.JButton();
+        jLabelDiaSeleccionado = new javax.swing.JLabel();
+        jPanelPlatosMenu2 = new javax.swing.JPanel();
+        jLabelBanquete2 = new javax.swing.JLabel();
+        jCheckBoxPlato01 = new javax.swing.JCheckBox();
+        jCheckBoxPlato02 = new javax.swing.JCheckBox();
+        jCheckBoxPlato03 = new javax.swing.JCheckBox();
+        jCheckBoxPlato04 = new javax.swing.JCheckBox();
+        jCheckBoxPlato05 = new javax.swing.JCheckBox();
+        jCheckBoxPlato06 = new javax.swing.JCheckBox();
         jPanelDias = new javax.swing.JPanel();
         jLabeldias = new javax.swing.JLabel();
         jSliderDias = new javax.swing.JSlider();
@@ -400,27 +426,76 @@ public class NuevaReserva extends javax.swing.JFrame {
         jRadioButtonHabitacionesNo = new javax.swing.JRadioButton();
         jSpinnerHabitaciones = new javax.swing.JSpinner();
         jComboBoxHabitaciones = new javax.swing.JComboBox<>();
-        jPanelPlatosMenu = new javax.swing.JPanel();
-        jLabelBanquete = new javax.swing.JLabel();
-        jCheckBoxPlato1 = new javax.swing.JCheckBox();
-        jCheckBoxPlato2 = new javax.swing.JCheckBox();
-        jCheckBoxPlato3 = new javax.swing.JCheckBox();
-        jCheckBoxPlato4 = new javax.swing.JCheckBox();
-        jCheckBoxPlato5 = new javax.swing.JCheckBox();
-        jCheckBoxPlato6 = new javax.swing.JCheckBox();
-        jSpinnerAsistentes = new javax.swing.JSpinner();
-        jTextFieldNombreEvento = new javax.swing.JTextField();
-        jLabelNombreEvento = new javax.swing.JLabel();
-        jLabelAvisoNombre = new javax.swing.JLabel();
-        jButtonAceptar = new javax.swing.JButton();
-        jPanelDni = new javax.swing.JPanel();
-        jLabelDni = new javax.swing.JLabel();
-        jTextFieldDni = new javax.swing.JTextField();
-        jLabelDatosCliente = new javax.swing.JLabel();
-        miImagenPanel1 = new hotel105.vista.MiImagenPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanelBotones = new javax.swing.JPanel();
+        jButtonAceptar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jPanelNombreEvento = new javax.swing.JPanel();
+        jLabelNombreEvento = new javax.swing.JLabel();
+        jTextFieldNombreEvento = new javax.swing.JTextField();
+        jLabelAvisoNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelDni.setText("DNI: ");
+
+        miImagenPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miImagenPanel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout miImagenPanel1Layout = new javax.swing.GroupLayout(miImagenPanel1);
+        miImagenPanel1.setLayout(miImagenPanel1Layout);
+        miImagenPanel1Layout.setHorizontalGroup(
+            miImagenPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 22, Short.MAX_VALUE)
+        );
+        miImagenPanel1Layout.setVerticalGroup(
+            miImagenPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 21, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanelDniLayout = new javax.swing.GroupLayout(jPanelDni);
+        jPanelDni.setLayout(jPanelDniLayout);
+        jPanelDniLayout.setHorizontalGroup(
+            jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDniLayout.createSequentialGroup()
+                        .addComponent(jLabelDni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(miImagenPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(250, Short.MAX_VALUE))
+        );
+        jPanelDniLayout.setVerticalGroup(
+            jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelDni))
+                    .addComponent(miImagenPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        jLabelAsistentes.setText("Nº asistentes: ");
+
+        jSpinnerAsistentes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 500, 1));
+
+        jButtonDisponibilidad.setText("Ver disponibilidad");
+        jButtonDisponibilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDisponibilidadActionPerformed(evt);
+            }
+        });
 
         jComboBoxEvento.setModel(rellenarEventos());
         jComboBoxEvento.addActionListener(new java.awt.event.ActionListener() {
@@ -431,14 +506,117 @@ public class NuevaReserva extends javax.swing.JFrame {
 
         jLabelEvento.setText("Tipo evento: ");
 
-        jLabelAsistentes.setText("Nº asistentes: ");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelAsistentes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinnerAsistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelDiaSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelEvento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(197, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAsistentes)
+                    .addComponent(jSpinnerAsistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDisponibilidad)
+                    .addComponent(jLabelDiaSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelEvento)
+                    .addComponent(jComboBoxEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
 
-        jButtonDisponibilidad.setText("Ver disponibilidad");
-        jButtonDisponibilidad.addActionListener(new java.awt.event.ActionListener() {
+        jLabelBanquete2.setText("Banquete");
+
+        jCheckBoxPlato01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDisponibilidadActionPerformed(evt);
+                jCheckBoxPlato1ActionPerformed(evt);
             }
         });
+
+        jCheckBoxPlato02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPlato2ActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxPlato03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPlato3ActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxPlato04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPlato4ActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxPlato05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPlato5ActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxPlato06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPlato6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelPlatosMenu2Layout = new javax.swing.GroupLayout(jPanelPlatosMenu2);
+        jPanelPlatosMenu2.setLayout(jPanelPlatosMenu2Layout);
+        jPanelPlatosMenu2Layout.setHorizontalGroup(
+            jPanelPlatosMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPlatosMenu2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelBanquete2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxPlato01, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBoxPlato02, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBoxPlato03, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                .addComponent(jCheckBoxPlato04, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxPlato05, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxPlato06, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelPlatosMenu2Layout.setVerticalGroup(
+            jPanelPlatosMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPlatosMenu2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanelPlatosMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelBanquete2)
+                    .addComponent(jCheckBoxPlato01)
+                    .addComponent(jCheckBoxPlato02)
+                    .addComponent(jCheckBoxPlato03)
+                    .addComponent(jCheckBoxPlato04)
+                    .addComponent(jCheckBoxPlato05)
+                    .addComponent(jCheckBoxPlato06))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jLabeldias.setText("Nº días:");
 
@@ -491,117 +669,113 @@ public class NuevaReserva extends javax.swing.JFrame {
         jPanelDiasLayout.setHorizontalGroup(
             jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDiasLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(45, 45, 45)
                 .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDiasLayout.createSequentialGroup()
                         .addComponent(jLabelHabitaciones)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonHabitacionesSi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButtonHabitacionesNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jRadioButtonHabitacionesNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
                     .addGroup(jPanelDiasLayout.createSequentialGroup()
                         .addComponent(jLabeldias, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSliderDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDiasLayout.setVerticalGroup(
             jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDiasLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDiasLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSliderDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabeldias))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelHabitaciones)
-                        .addComponent(jRadioButtonHabitacionesSi)
-                        .addComponent(jRadioButtonHabitacionesNo))
-                    .addComponent(jSpinnerHabitaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDiasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jSpinnerHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDiasLayout.createSequentialGroup()
+                        .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSliderDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabeldias))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelHabitaciones)
+                            .addComponent(jRadioButtonHabitacionesSi)
+                            .addComponent(jRadioButtonHabitacionesNo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jComboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
-        jLabelBanquete.setText("Banquete");
-
-        jCheckBoxPlato1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato1ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxPlato2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato2ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxPlato3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato3ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxPlato4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato4ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxPlato5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato5ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxPlato6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxPlato6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelPlatosMenuLayout = new javax.swing.GroupLayout(jPanelPlatosMenu);
-        jPanelPlatosMenu.setLayout(jPanelPlatosMenuLayout);
-        jPanelPlatosMenuLayout.setHorizontalGroup(
-            jPanelPlatosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPlatosMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelBanquete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxPlato1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBoxPlato2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBoxPlato3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBoxPlato4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxPlato5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxPlato6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelTodoLayout = new javax.swing.GroupLayout(jPanelTodo);
+        jPanelTodo.setLayout(jPanelTodoLayout);
+        jPanelTodoLayout.setHorizontalGroup(
+            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanelTodoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelPlatosMenu2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelTodoLayout.createSequentialGroup()
+                .addComponent(jPanelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelPlatosMenuLayout.setVerticalGroup(
-            jPanelPlatosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPlatosMenuLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanelPlatosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelBanquete)
-                    .addComponent(jCheckBoxPlato1)
-                    .addComponent(jCheckBoxPlato2)
-                    .addComponent(jCheckBoxPlato3)
-                    .addComponent(jCheckBoxPlato4)
-                    .addComponent(jCheckBoxPlato5)
-                    .addComponent(jCheckBoxPlato6))
-                .addContainerGap(22, Short.MAX_VALUE))
+        jPanelTodoLayout.setVerticalGroup(
+            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTodoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelPlatosMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jSpinnerAsistentes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 500, 1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Nueva reserva");
+
+        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
+        jPanelBotones.setLayout(jPanelBotonesLayout);
+        jPanelBotonesLayout.setHorizontalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+        jPanelBotonesLayout.setVerticalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotonesLayout.createSequentialGroup()
+                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonAceptar))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jLabelNombreEvento.setText("Nombre del evento:");
 
         jTextFieldNombreEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,236 +793,63 @@ public class NuevaReserva extends javax.swing.JFrame {
             }
         });
 
-        jLabelNombreEvento.setText("Nombre del evento:");
-
         jLabelAvisoNombre.setForeground(new java.awt.Color(255, 0, 0));
 
-        javax.swing.GroupLayout jPanelRestoDeCamposLayout = new javax.swing.GroupLayout(jPanelRestoDeCampos);
-        jPanelRestoDeCampos.setLayout(jPanelRestoDeCamposLayout);
-        jPanelRestoDeCamposLayout.setHorizontalGroup(
-            jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                        .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                                .addComponent(jLabelAsistentes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerAsistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                                .addComponent(jLabelEvento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                        .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanelPlatosMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
-                                .addComponent(jLabelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(112, 112, 112)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanelRestoDeCamposLayout.setVerticalGroup(
-            jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelRestoDeCamposLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelNombreEventoLayout = new javax.swing.GroupLayout(jPanelNombreEvento);
+        jPanelNombreEvento.setLayout(jPanelNombreEventoLayout);
+        jPanelNombreEventoLayout.setHorizontalGroup(
+            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNombreEventoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRestoDeCamposLayout.createSequentialGroup()
-                        .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelAsistentes)
-                            .addComponent(jSpinnerAsistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDisponibilidad)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelEvento)
-                            .addComponent(jComboBoxEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelPlatosMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRestoDeCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelNombreEvento)))
-                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jButtonAceptar.setText("Aceptar");
-        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelTodoLayout = new javax.swing.GroupLayout(jPanelTodo);
-        jPanelTodo.setLayout(jPanelTodoLayout);
-        jPanelTodoLayout.setHorizontalGroup(
-            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addComponent(jPanelRestoDeCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 60, Short.MAX_VALUE))
-            .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanelTodoLayout.setVerticalGroup(
-            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addComponent(jPanelRestoDeCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAceptar)
-                .addGap(45, 45, 45))
+        jPanelNombreEventoLayout.setVerticalGroup(
+            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombreEvento))
+                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jLabelDni.setText("DNI: ");
-
-        miImagenPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                miImagenPanel1MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout miImagenPanel1Layout = new javax.swing.GroupLayout(miImagenPanel1);
-        miImagenPanel1.setLayout(miImagenPanel1Layout);
-        miImagenPanel1Layout.setHorizontalGroup(
-            miImagenPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 22, Short.MAX_VALUE)
-        );
-        miImagenPanel1Layout.setVerticalGroup(
-            miImagenPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 21, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanelDniLayout = new javax.swing.GroupLayout(jPanelDni);
-        jPanelDni.setLayout(jPanelDniLayout);
-        jPanelDniLayout.setHorizontalGroup(
-            jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDniLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDniLayout.createSequentialGroup()
-                        .addComponent(jLabelDni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(miImagenPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
-        jPanelDniLayout.setVerticalGroup(
-            jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDniLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelDni))
-                    .addComponent(miImagenPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Nueva reserva");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(213, 213, 213)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 172, Short.MAX_VALUE))
+            .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEventoActionPerformed
-        eventoSeleccionado();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jComboBoxEventoActionPerformed
-
-    private void jCheckBoxPlato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato1ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato1ActionPerformed
-
-    private void jCheckBoxPlato2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato2ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato2ActionPerformed
-
-    private void jCheckBoxPlato3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato3ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato3ActionPerformed
-
-    private void jCheckBoxPlato4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato4ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato4ActionPerformed
-
-    private void jCheckBoxPlato5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato5ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato5ActionPerformed
-
-    private void jCheckBoxPlato6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato6ActionPerformed
-        comprobarSeleccionados();
-        activarBotonAceptar();
-    }//GEN-LAST:event_jCheckBoxPlato6ActionPerformed
-
-    private void jRadioButtonHabitacionesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHabitacionesNoActionPerformed
-        if(jRadioButtonHabitacionesNo.isSelected()){
-            jSpinnerHabitaciones.setVisible(false);
-            jComboBoxHabitaciones.setVisible(false);
-        }
-        if (d.getDiaSeleccionado()!=null && platosSeleccionados.size()==2) {
-                jButtonAceptar.setVisible(true);
-                jButtonAceptar.setEnabled(false);
-        }
-            
-    }//GEN-LAST:event_jRadioButtonHabitacionesNoActionPerformed
-
-    private void jRadioButtonHabitacionesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHabitacionesSiActionPerformed
-        if(jRadioButtonHabitacionesSi.isSelected()){
-            jSpinnerHabitaciones.setVisible(true);
-            jComboBoxHabitaciones.setVisible(true);
-        }
-        activarBotonAceptar();
-    }//GEN-LAST:event_jRadioButtonHabitacionesSiActionPerformed
-
-    private void jButtonDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisponibilidadActionPerformed
-        d.setAsistentes((Integer)jSpinnerAsistentes.getValue());
-        d.comprobarAsistentes();
-        d.setVisible(true);
-    }//GEN-LAST:event_jButtonDisponibilidadActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if (!jTextFieldNombreEvento.getText().isBlank()) {
@@ -857,18 +858,14 @@ public class NuevaReserva extends javax.swing.JFrame {
             insertarHabitaciones();
             insertarBanquete();
             ventanaPrincipal.getModel().refreshTableModel(ventanaPrincipal.getHotel());
-            ventanaPrincipal.getModeloProximas().refreshTableModel(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
+//            ventanaPrincipal.getModeloProximas().refreshTableModel(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
             ventanaPrincipal.porcentajeReservas();
             dispose();
         }else{
             jLabelAvisoNombre.setText("El nombre del evento no puede estar vacío");
         }
-        
-    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
-    private void jSliderDiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderDiasMouseClicked
-        comprobarDiasSlider();
-    }//GEN-LAST:event_jSliderDiasMouseClicked
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void miImagenPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miImagenPanel1MouseClicked
         if(ventanaPrincipal.getHotel().comprobarDni(jTextFieldDni.getText())==true){
@@ -879,9 +876,52 @@ public class NuevaReserva extends javax.swing.JFrame {
             jLabelAsistentes.setEnabled(true);
             Cliente c = ventanaPrincipal.getHotel().devolverCliente(jTextFieldDni.getText());
             jLabelDatosCliente.setText("Nombre: " + c.getNombre() + " " + c.getApellidos());
-            jPanelRestoDeCampos.setVisible(true);
+        }else{
+            jLabelDatosCliente.setText("DNI incorrecto.");
         }
     }//GEN-LAST:event_miImagenPanel1MouseClicked
+
+    private void jTextFieldNombreEventoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoKeyPressed
+
+    }//GEN-LAST:event_jTextFieldNombreEventoKeyPressed
+
+    private void jTextFieldNombreEventoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoPropertyChange
+
+    }//GEN-LAST:event_jTextFieldNombreEventoPropertyChange
+
+    private void jTextFieldNombreEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoActionPerformed
+
+    }//GEN-LAST:event_jTextFieldNombreEventoActionPerformed
+
+    private void jCheckBoxPlato6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato6ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato6ActionPerformed
+
+    private void jCheckBoxPlato5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato5ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato5ActionPerformed
+
+    private void jCheckBoxPlato4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato4ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato4ActionPerformed
+
+    private void jCheckBoxPlato3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato3ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato3ActionPerformed
+
+    private void jCheckBoxPlato2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato2ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato2ActionPerformed
+
+    private void jCheckBoxPlato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPlato1ActionPerformed
+        comprobarSeleccionados();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jCheckBoxPlato1ActionPerformed
 
     private void jComboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHabitacionesActionPerformed
         activarBotonAceptar();
@@ -891,17 +931,39 @@ public class NuevaReserva extends javax.swing.JFrame {
         activarBotonAceptar();
     }//GEN-LAST:event_jSpinnerHabitacionesMouseClicked
 
-    private void jTextFieldNombreEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoActionPerformed
+    private void jRadioButtonHabitacionesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHabitacionesNoActionPerformed
+        if(jRadioButtonHabitacionesNo.isSelected()){
+            jSpinnerHabitaciones.setVisible(false);
+            jComboBoxHabitaciones.setVisible(false);
+        }
+        if (d.getDiaSeleccionado()!=null && platosSeleccionados.size()==2) {
+            jButtonAceptar.setVisible(true);
+            jButtonAceptar.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRadioButtonHabitacionesNoActionPerformed
 
-    }//GEN-LAST:event_jTextFieldNombreEventoActionPerformed
+    private void jRadioButtonHabitacionesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHabitacionesSiActionPerformed
+        if(jRadioButtonHabitacionesSi.isSelected()){
+            jSpinnerHabitaciones.setVisible(true);
+            jComboBoxHabitaciones.setVisible(true);
+        }
+        activarBotonAceptar();
+    }//GEN-LAST:event_jRadioButtonHabitacionesSiActionPerformed
 
-    private void jTextFieldNombreEventoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoPropertyChange
-       
-    }//GEN-LAST:event_jTextFieldNombreEventoPropertyChange
+    private void jSliderDiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderDiasMouseClicked
 
-    private void jTextFieldNombreEventoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreEventoKeyPressed
+    }//GEN-LAST:event_jSliderDiasMouseClicked
 
-    }//GEN-LAST:event_jTextFieldNombreEventoKeyPressed
+    private void jButtonDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisponibilidadActionPerformed
+        d.setAsistentes((Integer)jSpinnerAsistentes.getValue());
+        d.comprobarAsistentes();
+        d.setVisible(true);
+    }//GEN-LAST:event_jButtonDisponibilidadActionPerformed
+
+    private void jComboBoxEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEventoActionPerformed
+        eventoSeleccionado();
+        activarBotonAceptar();
+    }//GEN-LAST:event_jComboBoxEventoActionPerformed
    
     /**
      * @param args the command line arguments
@@ -941,29 +1003,33 @@ public class NuevaReserva extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupHabitaciones;
     private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonDisponibilidad;
-    private javax.swing.JCheckBox jCheckBoxPlato1;
-    private javax.swing.JCheckBox jCheckBoxPlato2;
-    private javax.swing.JCheckBox jCheckBoxPlato3;
-    private javax.swing.JCheckBox jCheckBoxPlato4;
-    private javax.swing.JCheckBox jCheckBoxPlato5;
-    private javax.swing.JCheckBox jCheckBoxPlato6;
+    private javax.swing.JCheckBox jCheckBoxPlato01;
+    private javax.swing.JCheckBox jCheckBoxPlato02;
+    private javax.swing.JCheckBox jCheckBoxPlato03;
+    private javax.swing.JCheckBox jCheckBoxPlato04;
+    private javax.swing.JCheckBox jCheckBoxPlato05;
+    private javax.swing.JCheckBox jCheckBoxPlato06;
     private javax.swing.JComboBox<String> jComboBoxEvento;
     private javax.swing.JComboBox<String> jComboBoxHabitaciones;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelAsistentes;
     private javax.swing.JLabel jLabelAvisoNombre;
-    private javax.swing.JLabel jLabelBanquete;
+    private javax.swing.JLabel jLabelBanquete2;
     private javax.swing.JLabel jLabelDatosCliente;
+    private javax.swing.JLabel jLabelDiaSeleccionado;
     private javax.swing.JLabel jLabelDni;
     private javax.swing.JLabel jLabelEvento;
     private javax.swing.JLabel jLabelHabitaciones;
     private javax.swing.JLabel jLabelNombreEvento;
     private javax.swing.JLabel jLabeldias;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelDias;
     private javax.swing.JPanel jPanelDni;
-    private javax.swing.JPanel jPanelPlatosMenu;
-    private javax.swing.JPanel jPanelRestoDeCampos;
+    private javax.swing.JPanel jPanelNombreEvento;
+    private javax.swing.JPanel jPanelPlatosMenu2;
     private javax.swing.JPanel jPanelTodo;
     private javax.swing.JRadioButton jRadioButtonHabitacionesNo;
     private javax.swing.JRadioButton jRadioButtonHabitacionesSi;

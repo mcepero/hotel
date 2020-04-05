@@ -3,6 +3,9 @@ package hotel105.modelo;
 
 import hotel105.modelo.Reserva;
 import hotel105.modelo.Cliente;
+import hotel105.vista.ErrorBD;
+import hotel105.vista.VentanaPrincipal;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +15,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.TreeMap;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,17 +38,27 @@ public class ManejoDB {
     public java.sql.Statement sentencia=null;
     public java.sql.ResultSet resultset=null;
     int resultado=0;
+    ErrorBD error = new ErrorBD();
+    private VentanaPrincipal vp;
+    
+    public ManejoDB(){
+    }
+
+    public ManejoDB(VentanaPrincipal vp) {
+        this.vp = vp;
+    }
     
     public void conexion() throws ClassNotFoundException{
         try{      
             //Class.forName("org.mariadb.jdbc.Driver");
             this.conexion = DriverManager.getConnection(url,user,pass);
         }catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("Error al conectar con la base de datos");
+            error.setVisible(true);
+            error.setDefaultCloseOperation(error.DISPOSE_ON_CLOSE);
+            error.setBounds(400, 200, 500, 300);
         }
     }
-    
+     
     public void cerrarConexion(){
         if (conexion != null) {
             try {
@@ -70,6 +87,8 @@ public class ManejoDB {
             }
         }catch(ClassNotFoundException e){
             e.getMessage();
+        }catch(NullPointerException npe){
+            vp.setVisible(false);
         }finally{
             cerrarConexion();
         }
@@ -145,6 +164,8 @@ public class ManejoDB {
             }
         }catch(ClassNotFoundException e){
             e.getMessage();
+        }catch(NullPointerException npe){
+            vp.setVisible(false);
         }finally{
             cerrarConexion();
         }
@@ -170,6 +191,8 @@ public class ManejoDB {
             }
         }catch(ClassNotFoundException e){
             e.getMessage();
+        }catch(NullPointerException npe){
+            vp.setVisible(false);
         }finally{
             cerrarConexion();
         }

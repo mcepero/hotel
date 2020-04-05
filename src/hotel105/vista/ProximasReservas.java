@@ -1,345 +1,630 @@
-package hotel105.vista;
-
-
-import hotel105.modelo.Evento;
-import hotel105.modelo.HabitacionCongreso;
-import hotel105.modelo.Hotel;
-import hotel105.modelo.ManejoDB;
-import hotel105.modelo.MenuBanquete;
-import hotel105.modelo.ModeloTablaReservas;
-import hotel105.modelo.Reserva;
-import hotel105.modelo.TipoEvento;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package hotel105.vista;
+
+import hotel105.modelo.Evento;
+import hotel105.modelo.Hotel;
+import hotel105.modelo.Reserva;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Manuel
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
-    Hotel hotel = new Hotel();
-    ManejoDB m = new ManejoDB();
-    ModeloTablaReservas model = new ModeloTablaReservas();
-    //ModeloTablaProximasReservas modeloProximas = new ModeloTablaProximasReservas();
-
-    public VentanaPrincipal() {
-        
+public class ProximasReservas extends javax.swing.JPanel {
+    private Hotel hotel;
+    /**
+     * Creates new form ProximasReservas
+     */
+    public ProximasReservas(Hotel hotel) {
+        this.hotel=hotel;
         initComponents();
-        jTableReservas.setModel(model);
-        jTableClientes.setModel(hotel.obtenerClientes());  
-        jTableClientes.setDefaultEditor(Object.class, null);
-    //    jTableProximosEventos.setModel(modeloProximas);
-        //modeloProximas.refreshTableModel(hotel, jComboBoxSalon.getSelectedIndex()+1);
-        
-        model.refreshTableModel(hotel);
-        porcentajeReservas();
-        jTextAreaInformacion.setEditable(false);
-       // imagenDisponible();
-        refreshTableModel(hotel, 1);
     }
 
-    public ModeloTablaReservas getModel() {
-        return model;
-    }
-
-    public void setModel(ModeloTablaReservas model) {
-        this.model = model;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel h) {
-        this.hotel = h;
-    }
-
-    /*public JComboBox<String> getjComboBoxSalon() {
-        return jComboBoxSalon;
-    }
-
-    public void setjComboBoxSalon(JComboBox<String> jComboBoxSalon) {
-        this.jComboBoxSalon = jComboBoxSalon;
-    }*/
     
-  /*  public ModeloTablaProximasReservas getModeloProximas() {
-        return modeloProximas;
-    }
-
-    public void setModeloProximas(ModeloTablaProximasReservas modeloProximas) {
-        this.modeloProximas = modeloProximas;
-    }*/
-
-  /*  public JTable getjTableProximosEventos() {
-        return jTableProximosEventos;
-    }
-
-    public void setjTableProximosEventos(JTable jTableProximosEventos) {
-        this.jTableProximosEventos = jTableProximosEventos;
-    }*/
-
-    /*public JTable getjTableReservas() {
-        return jTableReservas;
-    }
-
-    public void setjTableReservas(JTable jTableReservas) {
-        this.jTableReservas = jTableReservas;
-    }*/
-   
     
-    /*public ProximasReservas getProximasReservas1() {
+    public JLabel getjLabel1() {
 
-        return proximasReservas1;
-    }*/
+        return jLabel1;
+    }
 
-          public void porcentajeReservas(){
-        ArrayList<Evento> eventos = hotel.obtenerEventosConReserva();
-        ArrayList<Reserva> reservas = hotel.obtenerReservas();
-        double reservasSalon1=0;
-        double reservasSalon2=0;
-        double reservasSalon3=0;
-        double reservasSalon4=0;
-        
-        for (int i = 0; i < eventos.size(); i++) {
-            for (int j = 0; j < reservas.size(); j++) {
-                if (eventos.get(i).getId()==reservas.get(j).getIdEvento()){
-                    if (reservas.get(j).getSalon()==1) {
-                        reservasSalon1+=eventos.get(i).getNumeroDias();
-                    }else if (reservas.get(j).getSalon()==2) {
-                        reservasSalon2+=eventos.get(i).getNumeroDias();
-                    }else if (reservas.get(j).getSalon()==3) {
-                        reservasSalon3+=eventos.get(i).getNumeroDias();
-                    }else if (reservas.get(j).getSalon()==4) {
-                        reservasSalon4+=eventos.get(i).getNumeroDias();
-                    }
-                }
-            }
-        }
-        jLabelSalon1.setText("Tierra Media: " + (reservasSalon1*100)/24+"% reservado");
-        jLabelSalon2.setText("Narnia: " + (reservasSalon2*100)/24+"% reservado");
-        jLabelSalon3.setText("Asgard: " + (reservasSalon3*100)/24+"% reservado");
-        jLabelSalon4.setText("Namek: " + (reservasSalon4*100)/24+"% reservado");
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    public void setjLabel10(JLabel jLabel10) {
+        this.jLabel10 = jLabel10;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public void setjLabel11(JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    public JLabel getjLabel12() {
+        return jLabel12;
+    }
+
+    public void setjLabel12(JLabel jLabel12) {
+        this.jLabel12 = jLabel12;
+    }
+
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
+    public void setjLabel13(JLabel jLabel13) {
+        this.jLabel13 = jLabel13;
+    }
+
+    public JLabel getjLabel14() {
+        return jLabel14;
+    }
+
+    public void setjLabel14(JLabel jLabel14) {
+        this.jLabel14 = jLabel14;
+    }
+
+    public JLabel getjLabel15() {
+        return jLabel15;
+    }
+
+    public void setjLabel15(JLabel jLabel15) {
+        this.jLabel15 = jLabel15;
+    }
+
+    public JLabel getjLabel16() {
+        return jLabel16;
+    }
+
+    public void setjLabel16(JLabel jLabel16) {
+        this.jLabel16 = jLabel16;
+    }
+
+    public JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    public void setjLabel17(JLabel jLabel17) {
+        this.jLabel17 = jLabel17;
+    }
+
+    public JLabel getjLabel18() {
+        return jLabel18;
+    }
+
+    public void setjLabel18(JLabel jLabel18) {
+        this.jLabel18 = jLabel18;
+    }
+
+    public JLabel getjLabel19() {
+        return jLabel19;
+    }
+
+    public void setjLabel19(JLabel jLabel19) {
+        this.jLabel19 = jLabel19;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel20() {
+        return jLabel20;
+    }
+
+    public void setjLabel20(JLabel jLabel20) {
+        this.jLabel20 = jLabel20;
+    }
+
+    public JLabel getjLabel21() {
+        return jLabel21;
+    }
+
+    public void setjLabel21(JLabel jLabel21) {
+        this.jLabel21 = jLabel21;
+    }
+
+    public JLabel getjLabel22() {
+        return jLabel22;
+    }
+
+    public void setjLabel22(JLabel jLabel22) {
+        this.jLabel22 = jLabel22;
+    }
+
+    public JLabel getjLabel23() {
+        return jLabel23;
+    }
+
+    public void setjLabel23(JLabel jLabel23) {
+        this.jLabel23 = jLabel23;
+    }
+
+    public JLabel getjLabel24() {
+        return jLabel24;
+    }
+
+    public void setjLabel24(JLabel jLabel24) {
+        this.jLabel24 = jLabel24;
+    }
+
+    public JLabel getjLabel25() {
+        return jLabel25;
+    }
+
+    public void setjLabel25(JLabel jLabel25) {
+        this.jLabel25 = jLabel25;
+    }
+
+    public JLabel getjLabel26() {
+        return jLabel26;
+    }
+
+    public void setjLabel26(JLabel jLabel26) {
+        this.jLabel26 = jLabel26;
+    }
+
+    public JLabel getjLabel27() {
+        return jLabel27;
+    }
+
+    public void setjLabel27(JLabel jLabel27) {
+        this.jLabel27 = jLabel27;
+    }
+
+    public JLabel getjLabel28() {
+        return jLabel28;
+    }
+
+    public void setjLabel28(JLabel jLabel28) {
+        this.jLabel28 = jLabel28;
+    }
+
+    public JLabel getjLabel29() {
+        return jLabel29;
+    }
+
+    public void setjLabel29(JLabel jLabel29) {
+        this.jLabel29 = jLabel29;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel30() {
+        return jLabel30;
+    }
+
+    public void setjLabel30(JLabel jLabel30) {
+        this.jLabel30 = jLabel30;
+    }
+
+    public JLabel getjLabel31() {
+        return jLabel31;
+    }
+
+    public void setjLabel31(JLabel jLabel31) {
+        this.jLabel31 = jLabel31;
+    }
+
+    public JLabel getjLabel32() {
+        return jLabel32;
+    }
+
+    public void setjLabel32(JLabel jLabel32) {
+        this.jLabel32 = jLabel32;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public JLabel getjLabelFecha() {
+        return jLabelFecha;
+    }
+
+    public void setjLabelFecha(JLabel jLabelFecha) {
+        this.jLabelFecha = jLabelFecha;
+    }
+
+    public JLabel getjLabelSalon1() {
+        return jLabelSalon1;
+    }
+
+    public void setjLabelSalon1(JLabel jLabelSalon1) {
+        this.jLabelSalon1 = jLabelSalon1;
+    }
+
+    public JLabel getjLabelSalon2() {
+        return jLabelSalon2;
+    }
+
+    public void setjLabelSalon2(JLabel jLabelSalon2) {
+        this.jLabelSalon2 = jLabelSalon2;
+    }
+
+    public JLabel getjLabelSalon3() {
+        return jLabelSalon3;
+    }
+
+    public void setjLabelSalon3(JLabel jLabelSalon3) {
+        this.jLabelSalon3 = jLabelSalon3;
+    }
+
+    public JLabel getjLabelSalon4() {
+        return jLabelSalon4;
+    }
+
+    public void setjLabelSalon4(JLabel jLabelSalon4) {
+        this.jLabelSalon4 = jLabelSalon4;
+    }
+
+    public JLabel getjLabelViernes() {
+        return jLabelViernes;
+    }
+
+    public void setjLabelViernes(JLabel jLabelViernes) {
+        this.jLabelViernes = jLabelViernes;
+    }
+
+    public JLabel getjLabelViernes1() {
+        return jLabelViernes1;
+    }
+
+    public void setjLabelViernes1(JLabel jLabelViernes1) {
+        this.jLabelViernes1 = jLabelViernes1;
+    }
+
+    public JLabel getjLabelViernes2() {
+        return jLabelViernes2;
+    }
+
+    public void setjLabelViernes2(JLabel jLabelViernes2) {
+        this.jLabelViernes2 = jLabelViernes2;
+    }
+
+    public JPanel getjPanel01() {
+        return jPanel01;
+    }
+
+    public void setjPanel01(JPanel jPanel01) {
+        this.jPanel01 = jPanel01;
+    }
+
+    public JPanel getjPanel010() {
+        return jPanel010;
+    }
+
+    public void setjPanel010(JPanel jPanel010) {
+        this.jPanel010 = jPanel010;
+    }
+
+    public JPanel getjPanel011() {
+        return jPanel011;
+    }
+
+    public void setjPanel011(JPanel jPanel011) {
+        this.jPanel011 = jPanel011;
+    }
+
+    public JPanel getjPanel012() {
+        return jPanel012;
+    }
+
+    public void setjPanel012(JPanel jPanel012) {
+        this.jPanel012 = jPanel012;
+    }
+
+    public JPanel getjPanel013() {
+        return jPanel013;
+    }
+
+    public void setjPanel013(JPanel jPanel013) {
+        this.jPanel013 = jPanel013;
+    }
+
+    public JPanel getjPanel014() {
+        return jPanel014;
+    }
+
+    public void setjPanel014(JPanel jPanel014) {
+        this.jPanel014 = jPanel014;
+    }
+
+    public JPanel getjPanel015() {
+        return jPanel015;
+    }
+
+    public void setjPanel015(JPanel jPanel015) {
+        this.jPanel015 = jPanel015;
+    }
+
+    public JPanel getjPanel016() {
+        return jPanel016;
+    }
+
+    public void setjPanel016(JPanel jPanel016) {
+        this.jPanel016 = jPanel016;
+    }
+
+    public JPanel getjPanel017() {
+        return jPanel017;
+    }
+
+    public void setjPanel017(JPanel jPanel017) {
+        this.jPanel017 = jPanel017;
+    }
+
+    public JPanel getjPanel018() {
+        return jPanel018;
+    }
+
+    public void setjPanel018(JPanel jPanel018) {
+        this.jPanel018 = jPanel018;
+    }
+
+    public JPanel getjPanel019() {
+        return jPanel019;
+    }
+
+    public void setjPanel019(JPanel jPanel019) {
+        this.jPanel019 = jPanel019;
+    }
+
+    public JPanel getjPanel02() {
+        return jPanel02;
+    }
+
+    public void setjPanel02(JPanel jPanel02) {
+        this.jPanel02 = jPanel02;
+    }
+
+    public JPanel getjPanel020() {
+        return jPanel020;
+    }
+
+    public void setjPanel020(JPanel jPanel020) {
+        this.jPanel020 = jPanel020;
+    }
+
+    public JPanel getjPanel021() {
+        return jPanel021;
+    }
+
+    public void setjPanel021(JPanel jPanel021) {
+        this.jPanel021 = jPanel021;
+    }
+
+    public JPanel getjPanel022() {
+        return jPanel022;
+    }
+
+    public void setjPanel022(JPanel jPanel022) {
+        this.jPanel022 = jPanel022;
+    }
+
+    public JPanel getjPanel023() {
+        return jPanel023;
+    }
+
+    public void setjPanel023(JPanel jPanel023) {
+        this.jPanel023 = jPanel023;
+    }
+
+    public JPanel getjPanel024() {
+        return jPanel024;
+    }
+
+    public void setjPanel024(JPanel jPanel024) {
+        this.jPanel024 = jPanel024;
+    }
+
+    public JPanel getjPanel025() {
+        return jPanel025;
+    }
+
+    public void setjPanel025(JPanel jPanel025) {
+        this.jPanel025 = jPanel025;
+    }
+
+    public JPanel getjPanel026() {
+        return jPanel026;
+    }
+
+    public void setjPanel026(JPanel jPanel026) {
+        this.jPanel026 = jPanel026;
+    }
+
+    public JPanel getjPanel027() {
+        return jPanel027;
+    }
+
+    public void setjPanel027(JPanel jPanel027) {
+        this.jPanel027 = jPanel027;
+    }
+
+    public JPanel getjPanel028() {
+        return jPanel028;
+    }
+
+    public void setjPanel028(JPanel jPanel028) {
+        this.jPanel028 = jPanel028;
+    }
+
+    public JPanel getjPanel029() {
+        return jPanel029;
+    }
+
+    public void setjPanel029(JPanel jPanel029) {
+        this.jPanel029 = jPanel029;
+    }
+
+    public JPanel getjPanel03() {
+        return jPanel03;
+    }
+
+    public void setjPanel03(JPanel jPanel03) {
+        this.jPanel03 = jPanel03;
+    }
+
+    public JPanel getjPanel030() {
+        return jPanel030;
+    }
+
+    public void setjPanel030(JPanel jPanel030) {
+        this.jPanel030 = jPanel030;
+    }
+
+    public JPanel getjPanel031() {
+        return jPanel031;
+    }
+
+    public void setjPanel031(JPanel jPanel031) {
+        this.jPanel031 = jPanel031;
+    }
+
+    public JPanel getjPanel032() {
+        return jPanel032;
+    }
+
+    public void setjPanel032(JPanel jPanel032) {
+        this.jPanel032 = jPanel032;
+    }
+
+    public JPanel getjPanel04() {
+        return jPanel04;
+    }
+
+    public void setjPanel04(JPanel jPanel04) {
+        this.jPanel04 = jPanel04;
+    }
+
+    public JPanel getjPanel05() {
+        return jPanel05;
+    }
+
+    public void setjPanel05(JPanel jPanel05) {
+        this.jPanel05 = jPanel05;
+    }
+
+    public JPanel getjPanel06() {
+        return jPanel06;
+    }
+
+    public void setjPanel06(JPanel jPanel06) {
+        this.jPanel06 = jPanel06;
+    }
+
+    public JPanel getjPanel07() {
+        return jPanel07;
+    }
+
+    public void setjPanel07(JPanel jPanel07) {
+        this.jPanel07 = jPanel07;
+    }
+
+    public JPanel getjPanel08() {
+        return jPanel08;
+    }
+
+    public void setjPanel08(JPanel jPanel08) {
+        this.jPanel08 = jPanel08;
+    }
+
+    public JPanel getjPanel09() {
+        return jPanel09;
+    }
+
+    public void setjPanel09(JPanel jPanel09) {
+        this.jPanel09 = jPanel09;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
     }
     
-        public void refreshTableModel(Hotel h, int salon) {
-            JLabel listaJLabel[][] = new JLabel[8][4];
-            JPanel listaJPanel[][] = new JPanel[8][4];
-            
-            
-            listaJLabel[0][0] = jLabel1;
-            listaJLabel[1][0] = jLabel2;
-            listaJLabel[2][0] = jLabel3;
-            listaJLabel[3][0] = jLabel4;
-            listaJLabel[4][0] = jLabel5;
-            listaJLabel[5][0] = jLabel6;
-            listaJLabel[6][0] = jLabel7;
-            listaJLabel[7][0] = jLabel8;
-            listaJLabel[0][1] = jLabel9;
-            listaJLabel[1][1] = jLabel10;
-            listaJLabel[2][1] = jLabel11;
-            listaJLabel[3][1] = jLabel12;
-            listaJLabel[4][1] = jLabel13;
-            listaJLabel[5][1] = jLabel14;
-            listaJLabel[6][1] = jLabel15;
-            listaJLabel[7][1] = jLabel16;
-            listaJLabel[0][2] = jLabel17;
-            listaJLabel[1][2] = jLabel18;
-            listaJLabel[2][2] = jLabel19;
-            listaJLabel[3][2] = jLabel20;
-            listaJLabel[4][2] = jLabel21;
-            listaJLabel[5][2] = jLabel22;
-            listaJLabel[6][2] = jLabel23;
-            listaJLabel[7][2] = jLabel24;
-            listaJLabel[0][3] = jLabel25;
-            listaJLabel[1][3] = jLabel26;
-            listaJLabel[2][3] = jLabel27;
-            listaJLabel[3][3] = jLabel28;
-            listaJLabel[4][3] = jLabel29;
-            listaJLabel[5][3] = jLabel30;
-            listaJLabel[6][3] = jLabel31;
-            listaJLabel[7][3] = jLabel32;
-            
-            listaJPanel[0][0] = jPanel01;
-            listaJPanel[1][0] = jPanel02;
-            listaJPanel[2][0] = jPanel03;
-            listaJPanel[3][0] = jPanel04;
-            listaJPanel[4][0] = jPanel05;
-            listaJPanel[5][0] = jPanel06;
-            listaJPanel[6][0] = jPanel07;
-            listaJPanel[7][0] = jPanel08;
-            listaJPanel[0][1] = jPanel09;
-            listaJPanel[1][1] = jPanel010;
-            listaJPanel[2][1] = jPanel011;
-            listaJPanel[3][1] = jPanel012;
-            listaJPanel[4][1] = jPanel013;
-            listaJPanel[5][1] = jPanel014;
-            listaJPanel[6][1] = jPanel015;
-            listaJPanel[7][1] = jPanel016;
-            listaJPanel[0][2] = jPanel017;
-            listaJPanel[1][2] = jPanel018;
-            listaJPanel[2][2] = jPanel019;
-            listaJPanel[3][2] = jPanel020;
-            listaJPanel[4][2] = jPanel021;
-            listaJPanel[5][2] = jPanel022;
-            listaJPanel[6][2] = jPanel023;
-            listaJPanel[7][2] = jPanel024;
-            listaJPanel[0][3] = jPanel025;
-            listaJPanel[1][3] = jPanel026;
-            listaJPanel[2][3] = jPanel027;
-            listaJPanel[3][3] = jPanel028;
-            listaJPanel[4][3] = jPanel029;
-            listaJPanel[5][3] = jPanel030;
-            listaJPanel[6][3] = jPanel031;
-            listaJPanel[7][3] = jPanel032;
+  
 
-            
-            if(h==null)
-            return;
-        if (!h.getReservas().isEmpty()) {
-
-            int numFilas=h.getReservas().size();
-            
-            ArrayList obtenidos = h.obtenerReservasFecha(salon);
-            ArrayList<Reserva> reservas = (ArrayList<Reserva>) obtenidos.get(0);
-            ArrayList<Evento> eventos = (ArrayList<Evento>) obtenidos.get(1);
-            
-            ArrayList dias = h.diasDisponibles();
-            Date[] numeroDias = (Date[]) dias.get(4);
-            
-            int contadorEscribirFecha = 0;
-            int contadorDias=0;
-            
-           
-            int fila=0;
-            int f=0;
-            
-            //Deja en blanco todos los labels para volver a comprobar
-            for (int i = 0; i < listaJLabel.length; i++) {
-                for (int j = 0; j < listaJLabel[i].length; j++) {
-                    listaJLabel[i][j].setText("");
-                    if (listaJPanel[i][j].getComponentCount()>1) {
-                        listaJPanel[i][j].remove(1);
-                    }
-                    
-                }
-            }
-
-            for (int i = 0; i < 8; i++) {
-                String texto = new SimpleDateFormat("yyyy-MM-dd").format(numeroDias[contadorEscribirFecha]) + " - " + new SimpleDateFormat("yyyy-MM-dd").format(numeroDias[contadorEscribirFecha+2]);
-                listaJLabel[i][0].setText(texto);
-                contadorEscribirFecha+=3;
-            }
-            
-            for(int g=0; g<23; g++){
-                for (int i = 0; i < reservas.size(); i++) {
-                    if(contadorDias<24){
-                        if (new SimpleDateFormat("yyyy-MM-dd").format(reservas.get(i).getFecha()).equals(new SimpleDateFormat("yyyy-MM-dd").format(numeroDias[contadorDias]))) {
-                            for (int j = 0; j < eventos.size(); j++) {
-                                if (reservas.get(i).getIdEvento()==eventos.get(j).getId()) {
-
-                                   Calendar calendar = Calendar.getInstance();
-                                   calendar.setTime(reservas.get(i).getFecha());
-                                   int diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
-
-                                    if (eventos.get(j).getNumeroDias()==1) {
-                                        if (diaSemana==1) {
-                                            listaJLabel[f][3].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        }else if(diaSemana==6){
-                                            listaJLabel[f][1].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        }else{
-                                            listaJLabel[f][2].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        }
-
-                                    }else if(eventos.get(j).getNumeroDias()==2){
-                                        if(diaSemana==6){
-                                            listaJLabel[f][1].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                            listaJLabel[f][2].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        }else if(diaSemana==7){
-                                            listaJLabel[f][2].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                            listaJLabel[f][3].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        }
-                                    }else if(eventos.get(j).getNumeroDias()==3){
-                                        listaJLabel[f][1].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        listaJLabel[f][2].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                        listaJLabel[f][3].setText(reservas.get(i).getTipo() + ": " + eventos.get(j).getNombre() + " Asistentes: " + eventos.get(j).getAsistentes());
-                                    }
-                                }/*else{
-                                    listaJLabel[f][1].setText("Disponible");
-                                    listaJLabel[f][2].setText("Disponible");
-                                    listaJLabel[f][3].setText("Disponible");
-                                }*/
-                            }
-                        }
-                    
-                    }
-                    
-                }
-                fila++;
-                if (fila%3==0) {
-                     f++;
-                }
-                contadorDias++;
-            }
-            
-            for (int i = 0; i < listaJLabel.length; i++) {
-                for (int j = 0; j < listaJLabel[i].length; j++) {
-                    listaJLabel[i][j].setVisible(true);
-                }
-            }
-                
-            for (int i = 0; i < listaJLabel.length; i++) {
-                for (int j = 0; j < listaJLabel[i].length; j++) {
-                    if (listaJLabel[i][j].getText().equals("")) {
-                        ImagenDisponible imagen=new ImagenDisponible(); 
-                        imagen.setVisible(true);
-                        imagen.setSize(100,100);
-                        listaJPanel[i][j].add(imagen);
-                     
-                        listaJPanel[i][j].repaint();
-                     }
-                }
-            }
-            
-            /*for (int i = 0; i < 8; i++) {
-                for (int j = 1; j < 4; j++) {
-                    if (data[i][j]==null) {
-                        data[i][j]="Disponible";
-                    }
-                }
-            }*/
-        }else{
-            //listaJLabel = new Object[0][0];
-        }
-
-    }
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPanelReservas = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableReservas = new javax.swing.JTable();
-        jButtonEliminar = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextAreaInformacion = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabelSalon1 = new javax.swing.JLabel();
         jLabelSalon2 = new javax.swing.JLabel();
@@ -414,103 +699,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jPanel031 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuAcciones = new javax.swing.JMenu();
-        jMenuItemReserva = new javax.swing.JMenuItem();
-        jMenuItemSalir = new javax.swing.JMenuItem();
-        jMenuAcerca = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTabbedPanelReservas.setPreferredSize(new java.awt.Dimension(470, 499));
-
-        jTableReservas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jTableReservas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableReservasMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTableReservas);
-
-        jButtonEliminar.setText("Eliminar");
-        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarActionPerformed(evt);
-            }
-        });
-
-        jTextAreaInformacion.setColumns(20);
-        jTextAreaInformacion.setRows(5);
-        jScrollPane4.setViewportView(jTextAreaInformacion);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPanelReservas.addTab("Reservas", jPanel1);
-
-        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableClientes);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPanelReservas.addTab("Clientes", jPanel2);
+        setLayout(new java.awt.CardLayout());
 
         jLabelSalon1.setText("Tierra Media: ");
 
@@ -665,11 +855,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel09.setLayout(jPanel09Layout);
         jPanel09Layout.setHorizontalGroup(
             jPanel09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+            .addGap(0, 216, Short.MAX_VALUE)
+            .addGroup(jPanel09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
         );
         jPanel09Layout.setVerticalGroup(
             jPanel09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addGap(0, 33, Short.MAX_VALUE)
+            .addGroup(jPanel09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel010Layout = new javax.swing.GroupLayout(jPanel010);
@@ -1022,6 +1216,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(681, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1050,69 +1248,61 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jPanel015, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jPanel016, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jPanel012, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(33, 33, 33))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSalon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel019, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel027, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel022, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel030, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel023, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel031, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel024, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel032, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(113, 113, 113)
-                                        .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelSalon1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(221, 221, 221)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel020, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel028, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jPanel018, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel026, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jPanel021, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel029, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jPanel017, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelViernes1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelViernes2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jPanel025, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelSalon1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSalon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelSalon4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSalon2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel019, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel027, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel022, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel030, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel023, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel031, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel024, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel032, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel020, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel028, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel018, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel026, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel021, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel029, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel017, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelViernes1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelViernes2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel025, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabelSalon2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel016, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1120,14 +1310,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabelSalon1)
                             .addComponent(jLabelSalon2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSalon3)
-                            .addComponent(jLabelSalon4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelSalon3)
+                                    .addComponent(jLabelSalon4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelFecha)
                                     .addComponent(jLabelViernes)
@@ -1186,7 +1376,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jPanel031, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jPanel023, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jPanel015, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel015, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel08, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1195,203 +1385,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPanelReservas.addTab("Próximas reservas", jPanel3);
-
-        jMenuAcciones.setText("Acciones");
-
-        jMenuItemReserva.setText("Nueva reserva");
-        jMenuItemReserva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemReservaMouseClicked(evt);
-            }
-        });
-        jMenuItemReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemReservaActionPerformed(evt);
-            }
-        });
-        jMenuAcciones.add(jMenuItemReserva);
-
-        jMenuItemSalir.setText("Salir");
-        jMenuItemSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemSalirMouseClicked(evt);
-            }
-        });
-        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSalirActionPerformed(evt);
-            }
-        });
-        jMenuAcciones.add(jMenuItemSalir);
-
-        jMenuBar1.add(jMenuAcciones);
-
-        jMenuAcerca.setText("Acerca de");
-        jMenuAcerca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuAcercaMouseClicked(evt);
-            }
-        });
-        jMenuAcerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAcercaActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenuAcerca);
-
-        setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPanelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPanelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pack();
+        add(jPanel3, "card2");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItemSalirActionPerformed
-
-    private void jMenuItemSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemSalirMouseClicked
-
-    }//GEN-LAST:event_jMenuItemSalirMouseClicked
-
-    private void jMenuItemReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemReservaMouseClicked
-
-    }//GEN-LAST:event_jMenuItemReservaMouseClicked
-
-    private void jMenuItemReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReservaActionPerformed
-        NuevaReserva r = new NuevaReserva(this);
-        r.setVisible(true);
-    }//GEN-LAST:event_jMenuItemReservaActionPerformed
-
-    private void jMenuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAcercaActionPerformed
-
-    }//GEN-LAST:event_jMenuAcercaActionPerformed
-
-    private void jMenuAcercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAcercaMouseClicked
-        Acerca a = new Acerca();
-        a.setVisible(true);
-        a.setSize(250,250);
-    }//GEN-LAST:event_jMenuAcercaMouseClicked
-
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        if (jTableReservas.getSelectedRowCount()!=0) {
-            int row = jTableReservas.getSelectedRow();
-            String fecha=String.valueOf(model.getValueAt(row,1));
-            String salon = String.valueOf(model.getValueAt(row,4));
-            for (int i = 0; i < hotel.getEventos().size(); i++) {
-                if (hotel.getEventos().get(i).getId()==hotel.getReservas().get(row).getIdEvento()) {
-                    hotel.getEventos().remove(i);
-                }
-            }
-            hotel.getReservas().remove(row);
-            m.eliminarEvento(Integer.parseInt(String.valueOf(model.getValueAt(row, 0))));
-            model.refreshTableModel(hotel);
-            jTextAreaInformacion.setText("");
-        }
-    }//GEN-LAST:event_jButtonEliminarActionPerformed
-
-    private void jTableReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservasMouseClicked
-        ArrayList<MenuBanquete> menus = hotel.obtenerMenus();
-        ArrayList<HabitacionCongreso> habitaciones = hotel.obtenerHabitaciones();
-        if (jTabbedPanelReservas.getSelectedIndex()>=0){
-            Reserva r = hotel.getReservas().get(jTableReservas.getSelectedRow());
-            Evento e = null;
-            for (int i = 0; i < hotel.getEventos().size(); i++) {
-                if (hotel.getEventos().get(i).getId()==r.getId()) {
-                    e=hotel.getEventos().get(i);
-                }
-            }
-            String nombreCliente = m.obtenerNombreCliente(r.getId());
-            String nombreSalon = m.obtenerNombreSalon(r.getId());
-            int asistentes = e.getAsistentes();
-
-            if (r.getTipo().equals(TipoEvento.Banquete.toString())) {
-                for (int i = 0; i < menus.size(); i++) {
-                    if (r.getIdEvento()==menus.get(i).getIdEvento()) {
-                        jTextAreaInformacion.setText("Cliente: " + nombreCliente  + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes + "\nPrimer plato: " + menus.get(i).getPrimero() + "\nSegundo plato: " + menus.get(i).getSegundo());
-                    }
-                }
-            }else if(r.getTipo().equals(TipoEvento.Congreso.toString())){
-                for (int i = 0; i < habitaciones.size(); i++) {
-                    if (r.getIdEvento()==habitaciones.get(i).getIdEvento()) {
-                        jTextAreaInformacion.setText("Cliente: " + nombreCliente + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes + "\nNúmero de habitaciones: " + habitaciones.get(i).getNumeroHab()+ "\nTipo de habitaciones: " + habitaciones.get(i).getTipo().toString());
-                    }
-                }
-            }else if(r.getTipo().equals(TipoEvento.Jornada.toString())){
-                jTextAreaInformacion.setText("Cliente: " + nombreCliente + "\nSalón: " + nombreSalon + "\nAsistentes: " + asistentes);
-            }
-
-        }
-
-    }//GEN-LAST:event_jTableReservasMouseClicked
-
-    private void jComboBoxSalonPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxSalonPropertyChange
-
-    }//GEN-LAST:event_jComboBoxSalonPropertyChange
-
-    private void jComboBoxSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalonActionPerformed
-        refreshTableModel(hotel, jComboBoxSalon.getSelectedIndex()+1);
-    }//GEN-LAST:event_jComboBoxSalonActionPerformed
 
     private void jComboBoxSalonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSalonItemStateChanged
         // modeloProximas.refreshTableModel(hotel, jComboBoxSalon.getSelectedIndex());
     }//GEN-LAST:event_jComboBoxSalonItemStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jComboBoxSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalonActionPerformed
+        //refreshTableModel(hotel, jComboBoxSalon.getSelectedIndex()+1);
+    }//GEN-LAST:event_jComboBoxSalonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new VentanaPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void jComboBoxSalonPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxSalonPropertyChange
+
+    }//GEN-LAST:event_jComboBoxSalonPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private hotel105.vista.ImagenDisponible imagenDisponible2;
-    private hotel105.vista.ImagenDisponible imagenDisponible3;
-    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JComboBox<String> jComboBoxSalon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1433,11 +1443,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelViernes;
     private javax.swing.JLabel jLabelViernes1;
     private javax.swing.JLabel jLabelViernes2;
-    private javax.swing.JMenu jMenuAcciones;
-    private javax.swing.JMenu jMenuAcerca;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemReserva;
-    private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JPanel jPanel01;
     private javax.swing.JPanel jPanel010;
     private javax.swing.JPanel jPanel011;
@@ -1470,22 +1475,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel07;
     private javax.swing.JPanel jPanel08;
     private javax.swing.JPanel jPanel09;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPanelReservas;
-    private javax.swing.JTable jTableClientes;
-    private javax.swing.JTable jTableReservas;
-    private javax.swing.JTextArea jTextAreaInformacion;
     // End of variables declaration//GEN-END:variables
 }

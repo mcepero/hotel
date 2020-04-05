@@ -5,6 +5,8 @@
  */
 package hotel105;
 
+import hotel105.modelo.ManejoDB;
+import hotel105.vista.ErrorBD;
 import hotel105.vista.VentanaPrincipal;
 
 /**
@@ -13,7 +15,11 @@ import hotel105.vista.VentanaPrincipal;
  */
 public class HotelApp {
     public static void main(String[] args) {
-        VentanaPrincipal m = new VentanaPrincipal();
-        m.setVisible(true);
+        try{
+            VentanaPrincipal m = new VentanaPrincipal();
+            m.setVisible(true);
+        }catch(NullPointerException npe){
+            npe.getMessage();
+        }
     }
 }

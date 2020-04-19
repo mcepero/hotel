@@ -16,6 +16,7 @@ public class Acerca extends javax.swing.JFrame {
      */
     public Acerca() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

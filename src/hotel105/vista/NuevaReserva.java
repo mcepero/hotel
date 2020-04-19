@@ -858,8 +858,9 @@ public class NuevaReserva extends javax.swing.JFrame {
             insertarHabitaciones();
             insertarBanquete();
             ventanaPrincipal.getModel().refreshTableModel(ventanaPrincipal.getHotel());
-//            ventanaPrincipal.getModeloProximas().refreshTableModel(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
+//            ventanaPrincipal.getModeloProximas().proximasReservas(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex());
             ventanaPrincipal.porcentajeReservas();
+            ventanaPrincipal.proximasReservas(ventanaPrincipal.getHotel(), ventanaPrincipal.getjComboBoxSalon().getSelectedIndex()+1);
             dispose();
         }else{
             jLabelAvisoNombre.setText("El nombre del evento no puede estar vacío");

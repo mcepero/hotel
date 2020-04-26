@@ -229,8 +229,8 @@ public class NuevaReserva extends javax.swing.JFrame {
         }else if(evento.equals("Jornada")){
             jPanelPlatosMenu2.setVisible(false);
             jPanelDias.setVisible(false);
-            jTextFieldNombreEvento.setEnabled(true);
-            jLabelNombreEvento.setEnabled(true);
+            //jTextFieldNombreEvento.setEnabled(true);
+           // jLabelNombreEvento.setEnabled(true);
         }else if(evento.equals("Congreso")){
             jPanelPlatosMenu2.setVisible(false);
             jPanelDias.setVisible(true);
@@ -371,22 +371,22 @@ public class NuevaReserva extends javax.swing.JFrame {
         comprobarPlatosSeleccionados();
         if (jComboBoxEvento.getSelectedItem().toString().equals(TipoEvento.Banquete.toString())) {
             if (d.getDiaSeleccionado()!=null && platosSeleccionados.size()==2) {
-                jLabelNombreEvento.setEnabled(true);
-                jTextFieldNombreEvento.setEnabled(true);
+                //jLabelNombreEvento.setEnabled(true);
+                //jTextFieldNombreEvento.setEnabled(true);
                 jButtonAceptar.setEnabled(true);
             }else{
-                jLabelNombreEvento.setEnabled(false);
-                jTextFieldNombreEvento.setEnabled(false);
+                //jLabelNombreEvento.setEnabled(false);
+                //jTextFieldNombreEvento.setEnabled(false);
                 jButtonAceptar.setEnabled(false);
             }
         }else{
             if (d.getDiaSeleccionado()!=null) {
-                jLabelNombreEvento.setEnabled(true);
-                jTextFieldNombreEvento.setEnabled(true);
+                //jLabelNombreEvento.setEnabled(true);
+                //jTextFieldNombreEvento.setEnabled(true);
                 jButtonAceptar.setEnabled(true);
             }else{
-                jLabelNombreEvento.setEnabled(false);
-                jTextFieldNombreEvento.setEnabled(false);
+                //jLabelNombreEvento.setEnabled(false);
+                //jTextFieldNombreEvento.setEnabled(false);
                 jButtonAceptar.setEnabled(false);
             }
         }
@@ -418,6 +418,10 @@ public class NuevaReserva extends javax.swing.JFrame {
         jCheckBoxPlato04 = new javax.swing.JCheckBox();
         jCheckBoxPlato05 = new javax.swing.JCheckBox();
         jCheckBoxPlato06 = new javax.swing.JCheckBox();
+        jPanelNombreEvento = new javax.swing.JPanel();
+        jLabelNombreEvento = new javax.swing.JLabel();
+        jTextFieldNombreEvento = new javax.swing.JTextField();
+        jLabelAvisoNombre = new javax.swing.JLabel();
         jPanelDias = new javax.swing.JPanel();
         jLabeldias = new javax.swing.JLabel();
         jSliderDias = new javax.swing.JSlider();
@@ -430,10 +434,6 @@ public class NuevaReserva extends javax.swing.JFrame {
         jPanelBotones = new javax.swing.JPanel();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jPanelNombreEvento = new javax.swing.JPanel();
-        jLabelNombreEvento = new javax.swing.JLabel();
-        jTextFieldNombreEvento = new javax.swing.JTextField();
-        jLabelAvisoNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -525,7 +525,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                         .addComponent(jLabelEvento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,7 +595,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addComponent(jCheckBoxPlato02, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBoxPlato03, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jCheckBoxPlato04, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBoxPlato05, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -616,6 +616,51 @@ public class NuevaReserva extends javax.swing.JFrame {
                     .addComponent(jCheckBoxPlato05)
                     .addComponent(jCheckBoxPlato06))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabelNombreEvento.setText("Nombre del evento:");
+
+        jTextFieldNombreEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreEventoActionPerformed(evt);
+            }
+        });
+        jTextFieldNombreEvento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextFieldNombreEventoPropertyChange(evt);
+            }
+        });
+        jTextFieldNombreEvento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreEventoKeyPressed(evt);
+            }
+        });
+
+        jLabelAvisoNombre.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout jPanelNombreEventoLayout = new javax.swing.GroupLayout(jPanelNombreEvento);
+        jPanelNombreEvento.setLayout(jPanelNombreEventoLayout);
+        jPanelNombreEventoLayout.setHorizontalGroup(
+            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNombreEventoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelNombreEventoLayout.setVerticalGroup(
+            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombreEvento))
+                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabeldias.setText("Nº días:");
@@ -676,8 +721,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonHabitacionesSi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButtonHabitacionesNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1))
+                        .addComponent(jRadioButtonHabitacionesNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDiasLayout.createSequentialGroup()
                         .addComponent(jLabeldias, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -686,7 +730,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addGroup(jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanelDiasLayout.setVerticalGroup(
             jPanelDiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -716,12 +760,20 @@ public class NuevaReserva extends javax.swing.JFrame {
             jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanelTodoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelPlatosMenu2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelTodoLayout.createSequentialGroup()
+                        .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addGroup(jPanelTodoLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
             .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addComponent(jPanelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelPlatosMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelTodoLayout.createSequentialGroup()
+                        .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelTodoLayout.setVerticalGroup(
@@ -730,12 +782,13 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelPlatosMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addComponent(jPanelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -775,51 +828,6 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jLabelNombreEvento.setText("Nombre del evento:");
-
-        jTextFieldNombreEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreEventoActionPerformed(evt);
-            }
-        });
-        jTextFieldNombreEvento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jTextFieldNombreEventoPropertyChange(evt);
-            }
-        });
-        jTextFieldNombreEvento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldNombreEventoKeyPressed(evt);
-            }
-        });
-
-        jLabelAvisoNombre.setForeground(new java.awt.Color(255, 0, 0));
-
-        javax.swing.GroupLayout jPanelNombreEventoLayout = new javax.swing.GroupLayout(jPanelNombreEvento);
-        jPanelNombreEvento.setLayout(jPanelNombreEventoLayout);
-        jPanelNombreEventoLayout.setHorizontalGroup(
-            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNombreEventoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
-            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabelNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelNombreEventoLayout.setVerticalGroup(
-            jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNombreEventoLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(jPanelNombreEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNombreEvento))
-                .addComponent(jLabelAvisoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -828,8 +836,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addGap(213, 213, 213)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 172, Short.MAX_VALUE))
-            .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 548, Short.MAX_VALUE)
             .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -838,9 +845,7 @@ public class NuevaReserva extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelNombreEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -875,6 +880,8 @@ public class NuevaReserva extends javax.swing.JFrame {
             jSpinnerAsistentes.setEnabled(true);
             jButtonDisponibilidad.setEnabled(true);
             jLabelAsistentes.setEnabled(true);
+            jTextFieldNombreEvento.setEnabled(true);
+            jLabelNombreEvento.setEnabled(true);
             Cliente c = ventanaPrincipal.getHotel().devolverCliente(jTextFieldDni.getText());
             jLabelDatosCliente.setText("Nombre: " + c.getNombre() + " " + c.getApellidos());
         }else{

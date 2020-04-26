@@ -66,7 +66,14 @@ public class ModeloTablaReservas extends AbstractTableModel{
                         data[f][1]=h.getReservas().get(f).getFecha();
                         data[f][2]=h.getEventos().get(i).getNombre();
                         data[f][3]=h.getReservas().get(f).getTipo();
-                        data[f][4]=h.getReservas().get(f).getSalon();
+                        if(h.getReservas().get(f).getSalon()==1)
+                            data[f][4]="Tierra Media";
+                        else if(h.getReservas().get(f).getSalon()==2)
+                            data[f][4]="Narnia";
+                        else if(h.getReservas().get(f).getSalon()==3)
+                            data[f][4]="Asgard";
+                        else  if(h.getReservas().get(f).getSalon()==4)
+                            data[f][4]="Namek";
                         data[f][5]=h.getEventos().get(i).getNumeroDias();
                     }
                 }

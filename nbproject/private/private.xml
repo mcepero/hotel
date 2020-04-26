@@ -5,10 +5,8 @@
         <group>
             <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/VentanaPrincipal.java</file>
             <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/NuevaReserva.java</file>
-            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/DiasDisponibles.java</file>
-            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/MiImagenPanel.java</file>
-            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/Acerca.java</file>
-            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/ImagenDisponible.java</file>
+            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/vista/AvisoEliminarReserva.java</file>
+            <file>file:/E:/manuel/Escritorio/di_marzo_ent02_CeperoSanchez_Manuel/di_t02p02_e01_CeperoSanchezManuel/src/hotel105/modelo/ModeloTablaReservas.java</file>
         </group>
     </open-files>
 </project-private>

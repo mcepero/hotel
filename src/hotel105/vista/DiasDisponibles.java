@@ -7,16 +7,17 @@ package hotel105.vista;
 
 import hotel105.modelo.Evento;
 import hotel105.modelo.Hotel;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SpinnerNumberModel;
 
@@ -26,217 +27,231 @@ import javax.swing.SpinnerNumberModel;
  */
 public class DiasDisponibles extends javax.swing.JFrame {
 
-    private Date diaSeleccionado;
-    private int salonSeleccionado;
-    private boolean salir = false;
-    NuevaReserva nuevaReserva;
-    
+    ArrayList<JRadioButton> botonesSalon1 = new ArrayList<JRadioButton>();
+    ArrayList<JRadioButton> botonesSalon2 = new ArrayList<JRadioButton>();
+    ArrayList<JRadioButton> botonesSalon3 = new ArrayList<JRadioButton>();
+    ArrayList<JRadioButton> botonesSalon4 = new ArrayList<JRadioButton>();
     char[] diasS1;
     char[] diasS2;
     char[] diasS3;
     char[] diasS4;
-    Date[] numerosDias;
-    private int asistentes;
-    ArrayList<JRadioButton> botonesSalon1;
-    ArrayList<JRadioButton> botonesSalon2;
-    ArrayList<JRadioButton> botonesSalon3;
-    ArrayList<JRadioButton> botonesSalon4;
     Hotel h = new Hotel();
-    
+    ArrayList salones = h.diasDisponibles();
+    Date[] numerosDias = (Date[]) salones.get(4);
+    ArrayList<JLabel> fechas= new ArrayList<>();
+    boolean semana;
+    ButtonGroup botones = new ButtonGroup();
+    NuevaReserva nuevaReserva;
+    private Date diaSeleccionado;
+    private int salonSeleccionado;
+    private int asistentes;
+   
     public DiasDisponibles(NuevaReserva nr) {
-        initComponents();
-        jPanelSegundos8Dias.setVisible(false);
-        ArrayList salones = h.diasDisponibles();
-        
+        numerosDias = (Date[]) salones.get(4);
+        semana=true;
+        this.nuevaReserva=nr;
         diasS1 = (char[]) salones.get(0);
         diasS2 = (char[]) salones.get(1);
         diasS3 = (char[]) salones.get(2);
         diasS4 = (char[]) salones.get(3);
-        numerosDias = (Date[]) salones.get(4);
-        
-        botonesSalon1 = new ArrayList<>();
-        botonesSalon2 = new ArrayList<>();
-        botonesSalon3 = new ArrayList<>();
-        botonesSalon4 = new ArrayList<>();
-        
-        this.nuevaReserva=nr;
-        
-        dibujarDias();
+        initComponents();
+        jButtonPrimeras4.setVisible(false);
+        anadir();
     }
-    
-    public void dibujarDias(){
-        
-        String diasSemana = "";
-        jButtonAnterioresSemanas.setVisible(false);
-        
-        
-        for (int i = 0; i < 4; i++) {
-           diasSemana+=" V     S     D    ";
+
+    public void anadir(){        
+        for (int i = 0; i < 24; i++) {
+            JRadioButton j = new JRadioButton();
+            botonesSalon1.add(j);
+            botones.add(j);
         }
         
-        jLabelDiasSemana.setText(diasSemana);
-        
-        diasSemana = " ";
-        for (int i = 0; i < 4; i++) {
-           diasSemana+=" V     S     D    ";
+        for (int i = 0; i < 24; i++) {
+            JRadioButton j = new JRadioButton();
+            botonesSalon2.add(j);
+            botones.add(j);
         }
-        jLabelDiasSemana2.setText(diasSemana);
+        
+        for (int i = 0; i < 24; i++) {
+            JRadioButton j = new JRadioButton();
+            botonesSalon3.add(j);
+            botones.add(j);
+        }
+        
+        for (int i = 0; i < 24; i++) {
+            JRadioButton j = new JRadioButton();
+            botonesSalon4.add(j);
+            botones.add(j);
+        }
+        
+               
+        Calendar calendar= Calendar.getInstance();
+        for (int i = 0; i < numerosDias.length; i++) {
+            calendar.setTime(numerosDias[i]);
+            String numero = calendar.get(Calendar.DAY_OF_MONTH)+"";
+            if (calendar.get(Calendar.DAY_OF_MONTH)<10) {
+                numero = "0"+calendar.get(Calendar.DAY_OF_MONTH);
+            }
+            fechas.add(new JLabel(numero));
+        }
 
         
-        botonesSalon1.add(jRadioButtonS1Dia1);
-        botonesSalon1.add(jRadioButtonS1Dia2);
-        botonesSalon1.add(jRadioButtonS1Dia3);
-        botonesSalon1.add(jRadioButtonS1Dia4);
-        botonesSalon1.add(jRadioButtonS1Dia5);
-        botonesSalon1.add(jRadioButtonS1Dia6);
-        botonesSalon1.add(jRadioButtonS1Dia7);
-        botonesSalon1.add(jRadioButtonS1Dia8);
-        botonesSalon1.add(jRadioButtonS1Dia9);
-        botonesSalon1.add(jRadioButtonS1Dia10);
-        botonesSalon1.add(jRadioButtonS1Dia11);
-        botonesSalon1.add(jRadioButtonS1Dia12);
-        botonesSalon1.add(jRadioButtonS1Dia13);
-        botonesSalon1.add(jRadioButtonS1Dia14);
-        botonesSalon1.add(jRadioButtonS1Dia15);
-        botonesSalon1.add(jRadioButtonS1Dia16);
-        botonesSalon1.add(jRadioButtonS1Dia17);
-        botonesSalon1.add(jRadioButtonS1Dia18);
-        botonesSalon1.add(jRadioButtonS1Dia19);
-        botonesSalon1.add(jRadioButtonS1Dia20);
-        botonesSalon1.add(jRadioButtonS1Dia21);
-        botonesSalon1.add(jRadioButtonS1Dia22);
-        botonesSalon1.add(jRadioButtonS1Dia23);
-        botonesSalon1.add(jRadioButtonS1Dia24);
-        botonesSalon2.add(jRadioButtonS2Dia1);
-        botonesSalon2.add(jRadioButtonS2Dia2);
-        botonesSalon2.add(jRadioButtonS2Dia3);
-        botonesSalon2.add(jRadioButtonS2Dia4);
-        botonesSalon2.add(jRadioButtonS2Dia5);
-        botonesSalon2.add(jRadioButtonS2Dia6);
-        botonesSalon2.add(jRadioButtonS2Dia7);
-        botonesSalon2.add(jRadioButtonS2Dia8);
-        botonesSalon2.add(jRadioButtonS2Dia9);
-        botonesSalon2.add(jRadioButtonS2Dia10);
-        botonesSalon2.add(jRadioButtonS2Dia11);
-        botonesSalon2.add(jRadioButtonS2Dia12);
-        botonesSalon2.add(jRadioButtonS2Dia13);
-        botonesSalon2.add(jRadioButtonS2Dia14);
-        botonesSalon2.add(jRadioButtonS2Dia15);
-        botonesSalon2.add(jRadioButtonS2Dia16);
-        botonesSalon2.add(jRadioButtonS2Dia17);
-        botonesSalon2.add(jRadioButtonS2Dia18);
-        botonesSalon2.add(jRadioButtonS2Dia19);
-        botonesSalon2.add(jRadioButtonS2Dia20);
-        botonesSalon2.add(jRadioButtonS2Dia21);
-        botonesSalon2.add(jRadioButtonS2Dia22);
-        botonesSalon2.add(jRadioButtonS2Dia23);
-        botonesSalon2.add(jRadioButtonS2Dia24);
-        botonesSalon3.add(jRadioButtonS3Dia1);
-        botonesSalon3.add(jRadioButtonS3Dia2);
-        botonesSalon3.add(jRadioButtonS3Dia3);
-        botonesSalon3.add(jRadioButtonS3Dia4);
-        botonesSalon3.add(jRadioButtonS3Dia5);
-        botonesSalon3.add(jRadioButtonS3Dia6);
-        botonesSalon3.add(jRadioButtonS3Dia7);
-        botonesSalon3.add(jRadioButtonS3Dia8);
-        botonesSalon3.add(jRadioButtonS3Dia9);
-        botonesSalon3.add(jRadioButtonS3Dia10);
-        botonesSalon3.add(jRadioButtonS3Dia11);
-        botonesSalon3.add(jRadioButtonS3Dia12);
-        botonesSalon3.add(jRadioButtonS3Dia13);
-        botonesSalon3.add(jRadioButtonS3Dia14);
-        botonesSalon3.add(jRadioButtonS3Dia15);
-        botonesSalon3.add(jRadioButtonS3Dia16);
-        botonesSalon3.add(jRadioButtonS3Dia17);
-        botonesSalon3.add(jRadioButtonS3Dia18);
-        botonesSalon3.add(jRadioButtonS3Dia19);
-        botonesSalon3.add(jRadioButtonS3Dia20);
-        botonesSalon3.add(jRadioButtonS3Dia21);
-        botonesSalon3.add(jRadioButtonS3Dia22);
-        botonesSalon3.add(jRadioButtonS3Dia23);
-        botonesSalon3.add(jRadioButtonS3Dia24);
-        botonesSalon4.add(jRadioButtonS4Dia1);
-        botonesSalon4.add(jRadioButtonS4Dia2);
-        botonesSalon4.add(jRadioButtonS4Dia3);
-        botonesSalon4.add(jRadioButtonS4Dia4);
-        botonesSalon4.add(jRadioButtonS4Dia5);
-        botonesSalon4.add(jRadioButtonS4Dia6);
-        botonesSalon4.add(jRadioButtonS4Dia7);
-        botonesSalon4.add(jRadioButtonS4Dia8);
-        botonesSalon4.add(jRadioButtonS4Dia9);
-        botonesSalon4.add(jRadioButtonS4Dia10);
-        botonesSalon4.add(jRadioButtonS4Dia11);
-        botonesSalon4.add(jRadioButtonS4Dia12);
-        botonesSalon4.add(jRadioButtonS4Dia13);
-        botonesSalon4.add(jRadioButtonS4Dia14);
-        botonesSalon4.add(jRadioButtonS4Dia15);
-        botonesSalon4.add(jRadioButtonS4Dia16);
-        botonesSalon4.add(jRadioButtonS4Dia17);
-        botonesSalon4.add(jRadioButtonS4Dia18);
-        botonesSalon4.add(jRadioButtonS4Dia19);
-        botonesSalon4.add(jRadioButtonS4Dia20);
-        botonesSalon4.add(jRadioButtonS4Dia21);
-        botonesSalon4.add(jRadioButtonS4Dia22);
-        botonesSalon4.add(jRadioButtonS4Dia23);
-        botonesSalon4.add(jRadioButtonS4Dia24);
+        GridBagLayout gridBag = new GridBagLayout ();
+        GridBagConstraints restricciones = new GridBagConstraints ();
+        restricciones.insets = new Insets(4,4,4,4);
+        jPanelPrimeras4Semanas.setLayout(gridBag);
+        restricciones.fill = GridBagConstraints.BOTH;
+        restricciones.weightx = 1.5; 
+        
+            restricciones.gridwidth=12;
+            for (int i = 0; i < 12; i++) {
+                if (i==11) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JLabel dia = fechas.get(i);
+                gridBag.setConstraints (dia, restricciones); 
+                jPanelPrimeras4Semanas.add(dia);
+            }
+
+            restricciones.gridwidth=12;
+            for (int i = 0; i < 4; i++) {
+                JLabel j = new JLabel(" V");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+
+                j = new JLabel(" S");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+
+                if (i==3) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+
+                j = new JLabel(" D");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+            }
+
+            restricciones.gridwidth=12;
+            for (int i = 0; i < 12; i++) {
+                if (i==11) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon1.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+            }
+
+            restricciones.gridwidth= 12;
+            for (int i = 0; i < 12; i++) {
+                if (i==11) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon2.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+            }
+
+            restricciones.gridwidth= 12;
+            for (int i = 0; i < 12; i++) {
+                if (i==11) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon3.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+            }
+
+            restricciones.gridwidth= 12;
+            for (int i = 0; i < 12; i++) {
+                if (i==11) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon4.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelPrimeras4Semanas.add(j);
+            }
+
+            jPanelPrimeras4Semanas.setVisible(true);
+
             
-        comprobarDisponibilidad();
-        
-        ArrayList<String> fechasString = new ArrayList<>();
-        for (int i = 0; i < numerosDias.length; i++) {
-            String numero = numerosDias[i].getDate()+"";
-            if (numerosDias[i].getDate()<10) {
-                numero = "0"+numerosDias[i].getDate();
+            gridBag = new GridBagLayout ();
+            restricciones = new GridBagConstraints ();
+            restricciones.insets = new Insets(4,4,4,4);
+            jPanelSegundas4semanas.setLayout(gridBag);
+            restricciones.fill = GridBagConstraints.BOTH;
+            restricciones.weightx = 1.5; 
+            restricciones.gridwidth=12;
+            for (int i = 12; i < 24; i++) {
+                if (i==23) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JLabel dia = fechas.get(i);
+                gridBag.setConstraints (dia, restricciones); 
+                jPanelSegundas4semanas.add(dia);
             }
-            fechasString.add(numero);
-        }
-        
-        jLabel1.setText(fechasString.get(0));
-        jLabel2.setText(fechasString.get(1));
-        jLabel3.setText(fechasString.get(2));
-        jLabel4.setText(fechasString.get(3));
-        jLabel5.setText(fechasString.get(4));
-        jLabel6.setText(fechasString.get(5));
-        jLabel7.setText(fechasString.get(6));
-        jLabel8.setText(fechasString.get(7));
-        jLabel9.setText(fechasString.get(8));
-        jLabel10.setText(fechasString.get(9));
-        jLabel11.setText(fechasString.get(10));
-        jLabel12.setText(fechasString.get(11));
-        jLabel01.setText(fechasString.get(12));
-        jLabel02.setText(fechasString.get(13));
-        jLabel03.setText(fechasString.get(14));
-        jLabel04.setText(fechasString.get(15));
-        jLabel05.setText(fechasString.get(16));
-        jLabel30.setText(fechasString.get(17));
-        jLabel31.setText(fechasString.get(18));
-        jLabel32.setText(fechasString.get(19));
-        jLabel33.setText(fechasString.get(20));
-        jLabel34.setText(fechasString.get(21));
-        jLabel35.setText(fechasString.get(22));
-        jLabel36.setText(fechasString.get(23));
-        
-        
-        
-        String nDias="";
-        /*for (int i = 0; i < 12; i++) {
-            String numero = Integer.toString(numerosDias[i].getDate());
-            if (numerosDias[i].getDate()<10){
-                numero="0"+numero;
+
+            restricciones.gridwidth=12;
+            for (int i = 0; i < 4; i++) {
+                JLabel j = new JLabel(" V");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
+
+                j = new JLabel(" S");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
+
+                if (i==3) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+
+                j = new JLabel(" D");
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
             }
-            nDias+=numero + "       ";
-        }*/
-       // jLabelNumeroDia.setText(nDias);
-        
-       /* nDias=" ";
-        for (int i = 12; i < 24; i++) {
-         String numero = Integer.toString(numerosDias[i].getDate());
-            if (numerosDias[i].getDate()<10){
-                numero="0"+numero;
+
+            restricciones.gridwidth=12;
+            for (int i = 12; i < 24; i++) {
+                if (i==23) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon1.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
             }
-            nDias+=numero + "   ";
-        }*/
-        //jLabelNumeroDia2.setText(nDias);
+
+            restricciones.gridwidth= 12;
+            for (int i = 12; i < 24; i++) {
+                if (i==23) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon2.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
+            }
+
+            restricciones.gridwidth= 12;
+            for (int i = 12; i < 24; i++) {
+                if (i==23) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon3.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
+            }
+
+            restricciones.gridwidth= 12;
+            for (int i = 12; i < 24; i++) {
+                if (i==23) {
+                   restricciones.gridwidth = GridBagConstraints.REMAINDER;
+                }
+                JRadioButton j = botonesSalon4.get(i);
+                gridBag.setConstraints (j, restricciones); 
+                jPanelSegundas4semanas.add(j);
+            }
+
+            jPanelSegundas4semanas.setVisible(false);
+
     }
     
     public JRadioButton botonSeleccionado() {
@@ -280,44 +295,21 @@ public class DiasDisponibles extends javax.swing.JFrame {
         
     }
     
-    
-    public void comprobarDisponibilidad(){
-        ArrayList<Evento> eventos = new ArrayList<>();
-         //eventos=h.obtenerEventos();
-        
-         for (int i = 0; i < diasS1.length; i++) {
-             JRadioButton j = (JRadioButton) botonesSalon1.get(i);
-             j.setEnabled(true);
-             if (diasS1[i]=='X') {
-                j.setEnabled(false);
-             }
-         }
-        
-        for (int i = 0; i < diasS2.length; i++) {
-            JRadioButton j = (JRadioButton) botonesSalon2.get(i);
-            j.setEnabled(true);
-            if (diasS2[i]=='X') {
-                j.setEnabled(false);
-            }
-        }
-        
-        for (int i = 0; i < diasS3.length; i++) {
-            JRadioButton j = (JRadioButton) botonesSalon3.get(i);
-            j.setEnabled(true);
-            if (diasS3[i]=='X') {
-                j.setEnabled(false);
-            }
-        }
-        
-        for (int i = 0; i < diasS4.length; i++) {
-            JRadioButton j = (JRadioButton) botonesSalon4.get(i);
-            j.setEnabled(true);
-            if (diasS4[i]=='X') {
-                j.setEnabled(false);
-            }
-        }
+    public void activarElementos(){
+        nuevaReserva.getjLabelEvento().setEnabled(true);
+        nuevaReserva.getjComboBoxEvento().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato1().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato2().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato3().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato4().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato5().setEnabled(true);
+        nuevaReserva.getjCheckBoxPlato6().setEnabled(true);
+        nuevaReserva.getjLabelHabitaciones().setEnabled(true);
+        nuevaReserva.getjComboBoxHabitaciones().setEnabled(true);
+        nuevaReserva.getjLabelBanquete().setEnabled(true);
+        nuevaReserva.getjSpinnerHabitaciones().setEnabled(true);
+        nuevaReserva.eventoSeleccionado();
     }
-    
     
     public void comprobarAsistentes(){
         if(asistentes>250){
@@ -360,6 +352,70 @@ public class DiasDisponibles extends javax.swing.JFrame {
         }
     }
 
+        public void comprobarDisponibilidad(){
+        ArrayList<Evento> eventos = new ArrayList<>();
+         //eventos=h.obtenerEventos();
+        
+         for (int i = 0; i < diasS1.length; i++) {
+             JRadioButton j = (JRadioButton) botonesSalon1.get(i);
+             j.setEnabled(true);
+             if (diasS1[i]=='X') {
+                j.setEnabled(false);
+             }
+         }
+        
+       for (int i = 0; i < diasS2.length; i++) {
+            JRadioButton j = (JRadioButton) botonesSalon2.get(i);
+            j.setEnabled(true);
+            if (diasS2[i]=='X') {
+                j.setEnabled(false);
+            }
+        }
+        
+        for (int i = 0; i < diasS3.length; i++) {
+            JRadioButton j = (JRadioButton) botonesSalon3.get(i);
+            j.setEnabled(true);
+            if (diasS3[i]=='X') {
+                j.setEnabled(false);
+            }
+        }
+        
+        for (int i = 0; i < diasS4.length; i++) {
+            JRadioButton j = (JRadioButton) botonesSalon4.get(i);
+            j.setEnabled(true);
+            if (diasS4[i]=='X') {
+                j.setEnabled(false);
+            }
+        }
+    }
+    
+    public Date getDiaSeleccionado() {
+        return diaSeleccionado;
+    }
+
+    public void setDiaSeleccionado(Date diaSeleccionado) {
+        this.diaSeleccionado = diaSeleccionado;
+    }
+
+    public int getSalonSeleccionado() {
+        return salonSeleccionado;
+    }
+
+    public void setSalonSeleccionado(int salonSeleccionado) {
+        this.salonSeleccionado = salonSeleccionado;
+    }
+
+    public int getAsistentes() {
+        return asistentes;
+    }
+
+    public void setAsistentes(int asistentes) {
+        this.asistentes = asistentes;
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -369,940 +425,27 @@ public class DiasDisponibles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupSemana = new javax.swing.ButtonGroup();
-        jPanelTodo = new javax.swing.JPanel();
-        jLabelSalon1 = new javax.swing.JLabel();
-        jLabelSalon2 = new javax.swing.JLabel();
-        jLabelSalon3 = new javax.swing.JLabel();
-        jPanelPrimeros8Dias = new javax.swing.JPanel();
-        jRadioButtonS1Dia1 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia2 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia3 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia4 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia5 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia6 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia7 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia8 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia9 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia10 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia11 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia12 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia1 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia2 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia3 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia4 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia5 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia6 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia7 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia8 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia9 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia10 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia11 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia12 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia1 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia2 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia3 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia4 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia5 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia6 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia7 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia8 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia9 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia10 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia11 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia12 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia1 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia2 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia3 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia4 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia6 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia5 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia7 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia8 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia9 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia10 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia11 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia12 = new javax.swing.JRadioButton();
-        jLabelDiasSemana = new javax.swing.JLabel();
-        jPanelNumeroDia = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabelSalon4 = new javax.swing.JLabel();
-        jPanelSegundos8Dias = new javax.swing.JPanel();
-        jRadioButtonS1Dia13 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia14 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia15 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia16 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia17 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia18 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia19 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia20 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia21 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia22 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia23 = new javax.swing.JRadioButton();
-        jRadioButtonS1Dia24 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia13 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia14 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia15 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia16 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia17 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia18 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia19 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia20 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia21 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia22 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia23 = new javax.swing.JRadioButton();
-        jRadioButtonS2Dia24 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia13 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia14 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia15 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia16 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia17 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia18 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia19 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia20 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia21 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia22 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia23 = new javax.swing.JRadioButton();
-        jRadioButtonS3Dia24 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia13 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia14 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia15 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia16 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia18 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia17 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia19 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia20 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia21 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia22 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia23 = new javax.swing.JRadioButton();
-        jRadioButtonS4Dia24 = new javax.swing.JRadioButton();
-        jLabelDiasSemana2 = new javax.swing.JLabel();
-        jPanelNumeroDia2 = new javax.swing.JPanel();
-        jLabel01 = new javax.swing.JLabel();
-        jLabel02 = new javax.swing.JLabel();
-        jLabel03 = new javax.swing.JLabel();
-        jLabel04 = new javax.swing.JLabel();
-        jLabel05 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
+        jPanelPrimeras4Semanas = new javax.swing.JPanel();
+        jPanelBotones = new javax.swing.JPanel();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabelNumeroSemanas = new javax.swing.JLabel();
-        jButtonSiguientesSemanas = new javax.swing.JButton();
-        jButtonAnterioresSemanas = new javax.swing.JButton();
+        jPanelCambioSemana = new javax.swing.JPanel();
+        jButtonPrimeras4 = new javax.swing.JButton();
+        jButtonSegundas4 = new javax.swing.JButton();
+        jLabelSemana = new javax.swing.JLabel();
+        jPanelSegundas4semanas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelSalon1.setText("Tierra Media");
-
-        jLabelSalon2.setText("Narnia");
-
-        jLabelSalon3.setText("Asgard");
-
-        buttonGroupSemana.add(jRadioButtonS1Dia1);
-        jRadioButtonS1Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
-        jRadioButtonS1Dia1.setName(""); // NOI18N
-
-        buttonGroupSemana.add(jRadioButtonS1Dia2);
-        jRadioButtonS1Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia3);
-        jRadioButtonS1Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia4);
-        jRadioButtonS1Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia5);
-        jRadioButtonS1Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia6);
-        jRadioButtonS1Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia7);
-        jRadioButtonS1Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia8);
-        jRadioButtonS1Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia9);
-        jRadioButtonS1Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia10);
-        jRadioButtonS1Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia11);
-        jRadioButtonS1Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia12);
-        jRadioButtonS1Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia1);
-        jRadioButtonS2Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia2);
-        jRadioButtonS2Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia3);
-        jRadioButtonS2Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia4);
-        jRadioButtonS2Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia5);
-        jRadioButtonS2Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia6);
-        jRadioButtonS2Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia7);
-        jRadioButtonS2Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia8);
-        jRadioButtonS2Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia9);
-        jRadioButtonS2Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia10);
-        jRadioButtonS2Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia11);
-        jRadioButtonS2Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia12);
-        jRadioButtonS2Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia1);
-        jRadioButtonS3Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia2);
-        jRadioButtonS3Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia3);
-        jRadioButtonS3Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia4);
-        jRadioButtonS3Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia5);
-        jRadioButtonS3Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia6);
-        jRadioButtonS3Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia7);
-        jRadioButtonS3Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia8);
-        jRadioButtonS3Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia9);
-        jRadioButtonS3Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia10);
-        jRadioButtonS3Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia11);
-        jRadioButtonS3Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia12);
-        jRadioButtonS3Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia1);
-        jRadioButtonS4Dia1.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia2);
-        jRadioButtonS4Dia2.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia3);
-        jRadioButtonS4Dia3.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia4);
-        jRadioButtonS4Dia4.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia6);
-        jRadioButtonS4Dia6.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia5);
-        jRadioButtonS4Dia5.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia7);
-        jRadioButtonS4Dia7.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia8);
-        jRadioButtonS4Dia8.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia9);
-        jRadioButtonS4Dia9.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia10);
-        jRadioButtonS4Dia10.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia11);
-        jRadioButtonS4Dia11.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia12);
-        jRadioButtonS4Dia12.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        javax.swing.GroupLayout jPanelNumeroDiaLayout = new javax.swing.GroupLayout(jPanelNumeroDia);
-        jPanelNumeroDia.setLayout(jPanelNumeroDiaLayout);
-        jPanelNumeroDiaLayout.setHorizontalGroup(
-            jPanelNumeroDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNumeroDiaLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanelPrimeras4SemanasLayout = new javax.swing.GroupLayout(jPanelPrimeras4Semanas);
+        jPanelPrimeras4Semanas.setLayout(jPanelPrimeras4SemanasLayout);
+        jPanelPrimeras4SemanasLayout.setHorizontalGroup(
+            jPanelPrimeras4SemanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 423, Short.MAX_VALUE)
         );
-        jPanelNumeroDiaLayout.setVerticalGroup(
-            jPanelNumeroDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNumeroDiaLayout.createSequentialGroup()
-                .addGroup(jPanelNumeroDiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanelPrimeros8DiasLayout = new javax.swing.GroupLayout(jPanelPrimeros8Dias);
-        jPanelPrimeros8Dias.setLayout(jPanelPrimeros8DiasLayout);
-        jPanelPrimeros8DiasLayout.setHorizontalGroup(
-            jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
-                        .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS1Dia1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS1Dia12))
-                            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS2Dia1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS2Dia12))
-                            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jRadioButtonS3Dia1)
-                                    .addComponent(jRadioButtonS4Dia1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS3Dia2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia6))
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS4Dia2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia6)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS3Dia7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia8))
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS4Dia7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia8)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS3Dia9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS3Dia12))
-                                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                        .addComponent(jRadioButtonS4Dia9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButtonS4Dia12)))))
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                            .addComponent(jPanelNumeroDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
-                            .addComponent(jLabelDiasSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(33, 33, 33)))))
-        );
-        jPanelPrimeros8DiasLayout.setVerticalGroup(
-            jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelNumeroDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLabelDiasSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButtonS1Dia1)
-                    .addComponent(jRadioButtonS1Dia2)
-                    .addComponent(jRadioButtonS1Dia3)
-                    .addComponent(jRadioButtonS1Dia4)
-                    .addComponent(jRadioButtonS1Dia5)
-                    .addComponent(jRadioButtonS1Dia6)
-                    .addComponent(jRadioButtonS1Dia7)
-                    .addComponent(jRadioButtonS1Dia8)
-                    .addComponent(jRadioButtonS1Dia9)
-                    .addComponent(jRadioButtonS1Dia10)
-                    .addComponent(jRadioButtonS1Dia11)
-                    .addComponent(jRadioButtonS1Dia12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButtonS2Dia1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButtonS2Dia2)
-                        .addComponent(jRadioButtonS2Dia3))
-                    .addComponent(jRadioButtonS2Dia4)
-                    .addComponent(jRadioButtonS2Dia5)
-                    .addComponent(jRadioButtonS2Dia6)
-                    .addComponent(jRadioButtonS2Dia7)
-                    .addComponent(jRadioButtonS2Dia8)
-                    .addComponent(jRadioButtonS2Dia9)
-                    .addComponent(jRadioButtonS2Dia10)
-                    .addComponent(jRadioButtonS2Dia11)
-                    .addComponent(jRadioButtonS2Dia12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonS3Dia10, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS3Dia11, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS3Dia12, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonS4Dia10, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS4Dia11, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS4Dia12, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
-                        .addComponent(jRadioButtonS3Dia7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButtonS4Dia7))
-                    .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                        .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButtonS3Dia1)
-                                .addComponent(jRadioButtonS3Dia2)
-                                .addComponent(jRadioButtonS3Dia3)
-                                .addComponent(jRadioButtonS3Dia4)
-                                .addComponent(jRadioButtonS3Dia5)
-                                .addComponent(jRadioButtonS3Dia6))
-                            .addComponent(jRadioButtonS3Dia9)
-                            .addComponent(jRadioButtonS3Dia8, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButtonS4Dia8))
-                            .addGroup(jPanelPrimeros8DiasLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelPrimeros8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jRadioButtonS4Dia5)
-                                        .addComponent(jRadioButtonS4Dia6)
-                                        .addComponent(jRadioButtonS4Dia4)
-                                        .addComponent(jRadioButtonS4Dia3)
-                                        .addComponent(jRadioButtonS4Dia2)
-                                        .addComponent(jRadioButtonS4Dia1))
-                                    .addComponent(jRadioButtonS4Dia9, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addGap(6, 6, 6))
-        );
-
-        jLabelSalon4.setText("Namek");
-
-        buttonGroupSemana.add(jRadioButtonS1Dia13);
-        jRadioButtonS1Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia14);
-        jRadioButtonS1Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia15);
-        jRadioButtonS1Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia16);
-        jRadioButtonS1Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia17);
-        jRadioButtonS1Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia18);
-        jRadioButtonS1Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia19);
-        jRadioButtonS1Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia20);
-        jRadioButtonS1Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia21);
-        jRadioButtonS1Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia22);
-        jRadioButtonS1Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia23);
-        jRadioButtonS1Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS1Dia24);
-        jRadioButtonS1Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia13);
-        jRadioButtonS2Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia14);
-        jRadioButtonS2Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia15);
-        jRadioButtonS2Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia16);
-        jRadioButtonS2Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia17);
-        jRadioButtonS2Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia18);
-        jRadioButtonS2Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia19);
-        jRadioButtonS2Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia20);
-        jRadioButtonS2Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia21);
-        jRadioButtonS2Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia22);
-        jRadioButtonS2Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia23);
-        jRadioButtonS2Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS2Dia24);
-        jRadioButtonS2Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia13);
-        jRadioButtonS3Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia14);
-        jRadioButtonS3Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia15);
-        jRadioButtonS3Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia16);
-        jRadioButtonS3Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia17);
-        jRadioButtonS3Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia18);
-        jRadioButtonS3Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia19);
-        jRadioButtonS3Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia20);
-        jRadioButtonS3Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia21);
-        jRadioButtonS3Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia22);
-        jRadioButtonS3Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia23);
-        jRadioButtonS3Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS3Dia24);
-        jRadioButtonS3Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia13);
-        jRadioButtonS4Dia13.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia14);
-        jRadioButtonS4Dia14.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia15);
-        jRadioButtonS4Dia15.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia16);
-        jRadioButtonS4Dia16.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia18);
-        jRadioButtonS4Dia18.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia17);
-        jRadioButtonS4Dia17.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia19);
-        jRadioButtonS4Dia19.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia20);
-        jRadioButtonS4Dia20.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia21);
-        jRadioButtonS4Dia21.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia22);
-        jRadioButtonS4Dia22.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia23);
-        jRadioButtonS4Dia23.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        buttonGroupSemana.add(jRadioButtonS4Dia24);
-        jRadioButtonS4Dia24.setMargin(new java.awt.Insets(2, 2, 2, 5));
-
-        javax.swing.GroupLayout jPanelNumeroDia2Layout = new javax.swing.GroupLayout(jPanelNumeroDia2);
-        jPanelNumeroDia2.setLayout(jPanelNumeroDia2Layout);
-        jPanelNumeroDia2Layout.setHorizontalGroup(
-            jPanelNumeroDia2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNumeroDia2Layout.createSequentialGroup()
-                .addComponent(jLabel01, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel02, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel03, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel04, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel05, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanelNumeroDia2Layout.setVerticalGroup(
-            jPanelNumeroDia2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNumeroDia2Layout.createSequentialGroup()
-                .addGroup(jPanelNumeroDia2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel02, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jLabel03, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel05, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanelSegundos8DiasLayout = new javax.swing.GroupLayout(jPanelSegundos8Dias);
-        jPanelSegundos8Dias.setLayout(jPanelSegundos8DiasLayout);
-        jPanelSegundos8DiasLayout.setHorizontalGroup(
-            jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabelDiasSemana2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelNumeroDia2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSegundos8DiasLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addComponent(jRadioButtonS1Dia13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS1Dia24))
-                    .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addComponent(jRadioButtonS2Dia13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButtonS2Dia24))
-                    .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS3Dia13)
-                            .addComponent(jRadioButtonS4Dia13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS3Dia14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia18))
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS4Dia14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia18)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS3Dia19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia20))
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS4Dia19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia20)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS3Dia21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS3Dia24))
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addComponent(jRadioButtonS4Dia21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonS4Dia24)))))
-                .addContainerGap())
-        );
-        jPanelSegundos8DiasLayout.setVerticalGroup(
-            jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelNumeroDia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLabelDiasSemana2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButtonS1Dia13)
-                    .addComponent(jRadioButtonS1Dia14)
-                    .addComponent(jRadioButtonS1Dia15)
-                    .addComponent(jRadioButtonS1Dia16)
-                    .addComponent(jRadioButtonS1Dia17)
-                    .addComponent(jRadioButtonS1Dia18)
-                    .addComponent(jRadioButtonS1Dia19)
-                    .addComponent(jRadioButtonS1Dia20)
-                    .addComponent(jRadioButtonS1Dia21)
-                    .addComponent(jRadioButtonS1Dia22)
-                    .addComponent(jRadioButtonS1Dia23)
-                    .addComponent(jRadioButtonS1Dia24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButtonS2Dia13, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButtonS2Dia14)
-                        .addComponent(jRadioButtonS2Dia15))
-                    .addComponent(jRadioButtonS2Dia16)
-                    .addComponent(jRadioButtonS2Dia17)
-                    .addComponent(jRadioButtonS2Dia18)
-                    .addComponent(jRadioButtonS2Dia19)
-                    .addComponent(jRadioButtonS2Dia20)
-                    .addComponent(jRadioButtonS2Dia21)
-                    .addComponent(jRadioButtonS2Dia22)
-                    .addComponent(jRadioButtonS2Dia23)
-                    .addComponent(jRadioButtonS2Dia24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonS3Dia22, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS3Dia23, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS3Dia24, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonS4Dia22, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS4Dia23, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButtonS4Dia24, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addComponent(jRadioButtonS3Dia19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButtonS4Dia19))
-                    .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButtonS3Dia13)
-                                .addComponent(jRadioButtonS3Dia14)
-                                .addComponent(jRadioButtonS3Dia15)
-                                .addComponent(jRadioButtonS3Dia16)
-                                .addComponent(jRadioButtonS3Dia17)
-                                .addComponent(jRadioButtonS3Dia18))
-                            .addComponent(jRadioButtonS3Dia21)
-                            .addComponent(jRadioButtonS3Dia20, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButtonS4Dia20))
-                            .addGroup(jPanelSegundos8DiasLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelSegundos8DiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jRadioButtonS4Dia17)
-                                        .addComponent(jRadioButtonS4Dia18)
-                                        .addComponent(jRadioButtonS4Dia16)
-                                        .addComponent(jRadioButtonS4Dia15)
-                                        .addComponent(jRadioButtonS4Dia14)
-                                        .addComponent(jRadioButtonS4Dia13))
-                                    .addComponent(jRadioButtonS4Dia21, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap())
+        jPanelPrimeras4SemanasLayout.setVerticalGroup(
+            jPanelPrimeras4SemanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jButtonAceptar.setText("Aceptar");
@@ -1319,130 +462,105 @@ public class DiasDisponibles extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelTodoLayout = new javax.swing.GroupLayout(jPanelTodo);
-        jPanelTodo.setLayout(jPanelTodoLayout);
-        jPanelTodoLayout.setHorizontalGroup(
-            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelTodoLayout.createSequentialGroup()
-                        .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabelSalon2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .addComponent(jLabelSalon3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelSalon1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSalon4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelPrimeros8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelSegundos8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelTodoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163)
-                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
+        jPanelBotones.setLayout(jPanelBotonesLayout);
+        jPanelBotonesLayout.setHorizontalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotonesLayout.createSequentialGroup()
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanelTodoLayout.setVerticalGroup(
-            jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTodoLayout.createSequentialGroup()
-                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelTodoLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabelSalon1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSalon2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSalon3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSalon4))
-                    .addGroup(jPanelTodoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelSegundos8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelPrimeros8Dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(jPanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAceptar)
-                    .addComponent(jButtonCancelar)))
+        jPanelBotonesLayout.setVerticalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotonesLayout.createSequentialGroup()
+                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jLabelNumeroSemanas.setText("Primeras 4 semanas");
-
-        jButtonSiguientesSemanas.setText(">");
-        jButtonSiguientesSemanas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonSiguientesSemanasMouseClicked(evt);
-            }
-        });
-        jButtonSiguientesSemanas.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrimeras4.setText("<");
+        jButtonPrimeras4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSiguientesSemanasActionPerformed(evt);
+                jButtonPrimeras4ActionPerformed(evt);
             }
         });
 
-        jButtonAnterioresSemanas.setText("<");
-        jButtonAnterioresSemanas.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSegundas4.setText(">");
+        jButtonSegundas4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAnterioresSemanasActionPerformed(evt);
+                jButtonSegundas4ActionPerformed(evt);
             }
         });
+
+        jLabelSemana.setText("Primeras cuatro semanas");
+
+        javax.swing.GroupLayout jPanelCambioSemanaLayout = new javax.swing.GroupLayout(jPanelCambioSemana);
+        jPanelCambioSemana.setLayout(jPanelCambioSemanaLayout);
+        jPanelCambioSemanaLayout.setHorizontalGroup(
+            jPanelCambioSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCambioSemanaLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jButtonPrimeras4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelSemana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonSegundas4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
+        );
+        jPanelCambioSemanaLayout.setVerticalGroup(
+            jPanelCambioSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCambioSemanaLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jPanelCambioSemanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPrimeras4)
+                    .addComponent(jButtonSegundas4)
+                    .addComponent(jLabelSemana))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanelSegundas4semanasLayout = new javax.swing.GroupLayout(jPanelSegundas4semanas);
+        jPanelSegundas4semanas.setLayout(jPanelSegundas4semanasLayout);
+        jPanelSegundas4semanasLayout.setHorizontalGroup(
+            jPanelSegundas4semanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 403, Short.MAX_VALUE)
+        );
+        jPanelSegundas4semanasLayout.setVerticalGroup(
+            jPanelSegundas4semanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 217, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelCambioSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jButtonAnterioresSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNumeroSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSiguientesSemanas)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNumeroSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSiguientesSemanas)
-                    .addComponent(jButtonAnterioresSemanas))
+                .addComponent(jPanelCambioSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(65, 65, 65)))
+                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSiguientesSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguientesSemanasActionPerformed
-       jPanelPrimeros8Dias.setVisible(false);
-       jPanelSegundos8Dias.setVisible(true);
-       jButtonAnterioresSemanas.setVisible(true);
-       jButtonSiguientesSemanas.setVisible(false);
-       jLabelNumeroSemanas.setText("Segundas 4 semanas");
-    }//GEN-LAST:event_jButtonSiguientesSemanasActionPerformed
-
-    private void jButtonSiguientesSemanasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSiguientesSemanasMouseClicked
-
-    }//GEN-LAST:event_jButtonSiguientesSemanasMouseClicked
-
-    private void jButtonAnterioresSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnterioresSemanasActionPerformed
-       jPanelPrimeros8Dias.setVisible(true);
-       jPanelSegundos8Dias.setVisible(false);
-       jButtonAnterioresSemanas.setVisible(false);
-       jButtonSiguientesSemanas.setVisible(true);
-       jLabelNumeroSemanas.setText("Primeras 4 semanas");
-    }//GEN-LAST:event_jButtonAnterioresSemanasActionPerformed
-
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        
         if (botonSeleccionado()!=null) {
             for (int i = 0; i < botonesSalon1.size(); i++) {
                 if (botonSeleccionado().equals(botonesSalon1.get(i))) {
@@ -1476,67 +594,31 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 }
             }
         }
-        salir=true;
         nuevaReserva.getjLabelDiaSeleccionado().setText("Fecha seleccionada: " + new SimpleDateFormat("dd/MM/yyyy").format(diaSeleccionado));
         nuevaReserva.comprobarDiasSlider();
         dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
+    private void jButtonPrimeras4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimeras4ActionPerformed
+        jPanelPrimeras4Semanas.setVisible(true);
+        jPanelSegundas4semanas.setVisible(false);
+        jButtonSegundas4.setVisible(true);
+        jButtonPrimeras4.setVisible(false);
+        jLabelSemana.setText("Primeras 4 semanas");
+    }//GEN-LAST:event_jButtonPrimeras4ActionPerformed
+
+    private void jButtonSegundas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSegundas4ActionPerformed
+        jButtonSegundas4.setVisible(false);
+        jButtonPrimeras4.setVisible(true);
+        jLabelSemana.setText("Segundas 4 semanas");
+        jPanelPrimeras4Semanas.setVisible(false);
+        jPanelSegundas4semanas.setVisible(true);
+    }//GEN-LAST:event_jButtonSegundas4ActionPerformed
+
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    public void activarElementos(){
-        nuevaReserva.getjLabelEvento().setEnabled(true);
-        nuevaReserva.getjComboBoxEvento().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato1().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato2().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato3().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato4().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato5().setEnabled(true);
-        nuevaReserva.getjCheckBoxPlato6().setEnabled(true);
-        nuevaReserva.getjLabelHabitaciones().setEnabled(true);
-        nuevaReserva.getjComboBoxHabitaciones().setEnabled(true);
-        nuevaReserva.getjLabelBanquete().setEnabled(true);
-        nuevaReserva.getjSpinnerHabitaciones().setEnabled(true);
-        nuevaReserva.eventoSeleccionado();
-    }
-    
-    
-    public Date getDiaSeleccionado() {
-        return diaSeleccionado;
-    }
-
-    public void setDiaSeleccionado(Date diaSeleccionado) {
-        this.diaSeleccionado = diaSeleccionado;
-    }
-
-    public int getSalonSeleccionado() {
-        return salonSeleccionado;
-    }
-
-    public void setSalonSeleccionado(int salonSeleccionado) {
-        this.salonSeleccionado = salonSeleccionado;
-    }
-
-    public boolean isSalir() {
-        return salir;
-    }
-
-    public void setSalir(boolean salir) {
-        this.salir = salir;
-    }
-
-    public int getAsistentes() {
-        return asistentes;
-    }
-
-    public void setAsistentes(int asistentes) {
-        this.asistentes = asistentes;
-    }
-
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -1563,165 +645,25 @@ public class DiasDisponibles extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DiasDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new DiasDisponibles().setVisible(true);
+                //new DiasDisponibles().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupSemana;
     private javax.swing.JButton jButtonAceptar;
-    private javax.swing.JButton jButtonAnterioresSemanas;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonSiguientesSemanas;
-    private javax.swing.JLabel jLabel01;
-    private javax.swing.JLabel jLabel02;
-    private javax.swing.JLabel jLabel03;
-    private javax.swing.JLabel jLabel04;
-    private javax.swing.JLabel jLabel05;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelDiasSemana;
-    private javax.swing.JLabel jLabelDiasSemana2;
-    private javax.swing.JLabel jLabelNumeroSemanas;
-    private javax.swing.JLabel jLabelSalon1;
-    private javax.swing.JLabel jLabelSalon2;
-    private javax.swing.JLabel jLabelSalon3;
-    private javax.swing.JLabel jLabelSalon4;
-    private javax.swing.JPanel jPanelNumeroDia;
-    private javax.swing.JPanel jPanelNumeroDia1;
-    private javax.swing.JPanel jPanelNumeroDia2;
-    private javax.swing.JPanel jPanelPrimeros8Dias;
-    private javax.swing.JPanel jPanelSegundos8Dias;
-    private javax.swing.JPanel jPanelTodo;
-    private javax.swing.JRadioButton jRadioButtonS1Dia1;
-    private javax.swing.JRadioButton jRadioButtonS1Dia10;
-    private javax.swing.JRadioButton jRadioButtonS1Dia11;
-    private javax.swing.JRadioButton jRadioButtonS1Dia12;
-    private javax.swing.JRadioButton jRadioButtonS1Dia13;
-    private javax.swing.JRadioButton jRadioButtonS1Dia14;
-    private javax.swing.JRadioButton jRadioButtonS1Dia15;
-    private javax.swing.JRadioButton jRadioButtonS1Dia16;
-    private javax.swing.JRadioButton jRadioButtonS1Dia17;
-    private javax.swing.JRadioButton jRadioButtonS1Dia18;
-    private javax.swing.JRadioButton jRadioButtonS1Dia19;
-    private javax.swing.JRadioButton jRadioButtonS1Dia2;
-    private javax.swing.JRadioButton jRadioButtonS1Dia20;
-    private javax.swing.JRadioButton jRadioButtonS1Dia21;
-    private javax.swing.JRadioButton jRadioButtonS1Dia22;
-    private javax.swing.JRadioButton jRadioButtonS1Dia23;
-    private javax.swing.JRadioButton jRadioButtonS1Dia24;
-    private javax.swing.JRadioButton jRadioButtonS1Dia3;
-    private javax.swing.JRadioButton jRadioButtonS1Dia4;
-    private javax.swing.JRadioButton jRadioButtonS1Dia5;
-    private javax.swing.JRadioButton jRadioButtonS1Dia6;
-    private javax.swing.JRadioButton jRadioButtonS1Dia7;
-    private javax.swing.JRadioButton jRadioButtonS1Dia8;
-    private javax.swing.JRadioButton jRadioButtonS1Dia9;
-    private javax.swing.JRadioButton jRadioButtonS2Dia1;
-    private javax.swing.JRadioButton jRadioButtonS2Dia10;
-    private javax.swing.JRadioButton jRadioButtonS2Dia11;
-    private javax.swing.JRadioButton jRadioButtonS2Dia12;
-    private javax.swing.JRadioButton jRadioButtonS2Dia13;
-    private javax.swing.JRadioButton jRadioButtonS2Dia14;
-    private javax.swing.JRadioButton jRadioButtonS2Dia15;
-    private javax.swing.JRadioButton jRadioButtonS2Dia16;
-    private javax.swing.JRadioButton jRadioButtonS2Dia17;
-    private javax.swing.JRadioButton jRadioButtonS2Dia18;
-    private javax.swing.JRadioButton jRadioButtonS2Dia19;
-    private javax.swing.JRadioButton jRadioButtonS2Dia2;
-    private javax.swing.JRadioButton jRadioButtonS2Dia20;
-    private javax.swing.JRadioButton jRadioButtonS2Dia21;
-    private javax.swing.JRadioButton jRadioButtonS2Dia22;
-    private javax.swing.JRadioButton jRadioButtonS2Dia23;
-    private javax.swing.JRadioButton jRadioButtonS2Dia24;
-    private javax.swing.JRadioButton jRadioButtonS2Dia3;
-    private javax.swing.JRadioButton jRadioButtonS2Dia4;
-    private javax.swing.JRadioButton jRadioButtonS2Dia5;
-    private javax.swing.JRadioButton jRadioButtonS2Dia6;
-    private javax.swing.JRadioButton jRadioButtonS2Dia7;
-    private javax.swing.JRadioButton jRadioButtonS2Dia8;
-    private javax.swing.JRadioButton jRadioButtonS2Dia9;
-    private javax.swing.JRadioButton jRadioButtonS3Dia1;
-    private javax.swing.JRadioButton jRadioButtonS3Dia10;
-    private javax.swing.JRadioButton jRadioButtonS3Dia11;
-    private javax.swing.JRadioButton jRadioButtonS3Dia12;
-    private javax.swing.JRadioButton jRadioButtonS3Dia13;
-    private javax.swing.JRadioButton jRadioButtonS3Dia14;
-    private javax.swing.JRadioButton jRadioButtonS3Dia15;
-    private javax.swing.JRadioButton jRadioButtonS3Dia16;
-    private javax.swing.JRadioButton jRadioButtonS3Dia17;
-    private javax.swing.JRadioButton jRadioButtonS3Dia18;
-    private javax.swing.JRadioButton jRadioButtonS3Dia19;
-    private javax.swing.JRadioButton jRadioButtonS3Dia2;
-    private javax.swing.JRadioButton jRadioButtonS3Dia20;
-    private javax.swing.JRadioButton jRadioButtonS3Dia21;
-    private javax.swing.JRadioButton jRadioButtonS3Dia22;
-    private javax.swing.JRadioButton jRadioButtonS3Dia23;
-    private javax.swing.JRadioButton jRadioButtonS3Dia24;
-    private javax.swing.JRadioButton jRadioButtonS3Dia3;
-    private javax.swing.JRadioButton jRadioButtonS3Dia4;
-    private javax.swing.JRadioButton jRadioButtonS3Dia5;
-    private javax.swing.JRadioButton jRadioButtonS3Dia6;
-    private javax.swing.JRadioButton jRadioButtonS3Dia7;
-    private javax.swing.JRadioButton jRadioButtonS3Dia8;
-    private javax.swing.JRadioButton jRadioButtonS3Dia9;
-    private javax.swing.JRadioButton jRadioButtonS4Dia1;
-    private javax.swing.JRadioButton jRadioButtonS4Dia10;
-    private javax.swing.JRadioButton jRadioButtonS4Dia11;
-    private javax.swing.JRadioButton jRadioButtonS4Dia12;
-    private javax.swing.JRadioButton jRadioButtonS4Dia13;
-    private javax.swing.JRadioButton jRadioButtonS4Dia14;
-    private javax.swing.JRadioButton jRadioButtonS4Dia15;
-    private javax.swing.JRadioButton jRadioButtonS4Dia16;
-    private javax.swing.JRadioButton jRadioButtonS4Dia17;
-    private javax.swing.JRadioButton jRadioButtonS4Dia18;
-    private javax.swing.JRadioButton jRadioButtonS4Dia19;
-    private javax.swing.JRadioButton jRadioButtonS4Dia2;
-    private javax.swing.JRadioButton jRadioButtonS4Dia20;
-    private javax.swing.JRadioButton jRadioButtonS4Dia21;
-    private javax.swing.JRadioButton jRadioButtonS4Dia22;
-    private javax.swing.JRadioButton jRadioButtonS4Dia23;
-    private javax.swing.JRadioButton jRadioButtonS4Dia24;
-    private javax.swing.JRadioButton jRadioButtonS4Dia3;
-    private javax.swing.JRadioButton jRadioButtonS4Dia4;
-    private javax.swing.JRadioButton jRadioButtonS4Dia5;
-    private javax.swing.JRadioButton jRadioButtonS4Dia6;
-    private javax.swing.JRadioButton jRadioButtonS4Dia7;
-    private javax.swing.JRadioButton jRadioButtonS4Dia8;
-    private javax.swing.JRadioButton jRadioButtonS4Dia9;
+    private javax.swing.JButton jButtonPrimeras4;
+    private javax.swing.JButton jButtonSegundas4;
+    private javax.swing.JLabel jLabelSemana;
+    private javax.swing.JPanel jPanelBotones;
+    private javax.swing.JPanel jPanelCambioSemana;
+    private javax.swing.JPanel jPanelPrimeras4Semanas;
+    private javax.swing.JPanel jPanelSegundas4semanas;
     // End of variables declaration//GEN-END:variables
 }

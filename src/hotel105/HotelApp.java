@@ -7,6 +7,7 @@ package hotel105;
 
 import hotel105.modelo.ManejoDB;
 import hotel105.vista.ErrorBD;
+import hotel105.vista.DiasDisponibles;
 import hotel105.vista.VentanaPrincipal;
 
 /**

@@ -47,6 +47,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTableClientes.setDefaultEditor(Object.class, null);
 
         model.refreshTableModel(hotel);
+        asignarTamañoTabla();
         porcentajeReservas();
         jTextAreaInformacion.setEditable(false);
         proximasReservas(hotel, 1);
@@ -101,7 +102,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.m = m;
     }
 
-    
+    public void asignarTamañoTabla(){
+        jTableReservas.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jTableReservas.getColumnModel().getColumn(1).setPreferredWidth(25);
+        jTableReservas.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTableReservas.getColumnModel().getColumn(3).setPreferredWidth(40);
+        jTableReservas.getColumnModel().getColumn(4).setPreferredWidth(40);
+        jTableReservas.getColumnModel().getColumn(5).setPreferredWidth(10);
+    }
     
     public void porcentajeReservas(){
         ArrayList<Evento> eventos = hotel.obtenerEventosConReserva();
@@ -111,9 +119,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         double reservasSalon3=0;
         double reservasSalon4=0;
         
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
+        
         for (int i = 0; i < eventos.size(); i++) {
-            for (int j = 0; j < reservas.size(); j++) {
-                if (reservas.get(j).getFecha().after(new Date()) || reservas.get(j).getFecha().equals(new Date())) {
+            for (int j = 0; j < reservas.size(); j++) { 
+                if (reservas.get(j).getFecha().after(new Date()) || new SimpleDateFormat("yyyy-MM-dd").format(reservas.get(j).getFecha()).equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date())) && diaSemana==6) {
                     if (eventos.get(i).getId()==reservas.get(j).getIdEvento()){
                         if (reservas.get(j).getSalon()==1) {
                             reservasSalon1+=eventos.get(i).getNumeroDias();
@@ -1315,38 +1327,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+   /* public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new VentanaPrincipal().setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;

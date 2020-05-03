@@ -69,11 +69,11 @@ public class Hotel {
         DefaultTableModel model=null;
         try{
             m.conexion();
-            model = new DefaultTableModel(new String[]{"ID", "DNI", "Nombre", "Apellidos", "Dirección", "Teléfono"}, 0);
+            model = new DefaultTableModel(new String[]{"DNI", "Nombre", "Apellidos", "Dirección", "Teléfono"}, 0);
            
             for (int i = 0; i < clientes.size(); i++) {
                 Cliente c= (Cliente) clientes.get(i);
-                model.addRow(new Object[]{c.getId(),c.getDni(), c.getNombre(),c.getApellidos(), c.getDireccion(), c.getTelefono()});
+                model.addRow(new Object[]{c.getDni(), c.getNombre(),c.getApellidos(), c.getDireccion(), c.getTelefono()});
             }
         }catch(ClassNotFoundException e){
             e.getMessage();

@@ -605,10 +605,10 @@ public class DiasDisponibles extends javax.swing.JFrame {
                     activarElementos();
                 }
             }
+            nuevaReserva.getjLabelDiaSeleccionado().setText("Fecha seleccionada: " + new SimpleDateFormat("dd/MM/yyyy").format(diaSeleccionado));
+            nuevaReserva.comprobarDiasSlider();
+            dispose();
         }
-        nuevaReserva.getjLabelDiaSeleccionado().setText("Fecha seleccionada: " + new SimpleDateFormat("dd/MM/yyyy").format(diaSeleccionado));
-        nuevaReserva.comprobarDiasSlider();
-        dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonPrimeras4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimeras4ActionPerformed

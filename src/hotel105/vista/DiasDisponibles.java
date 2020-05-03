@@ -103,7 +103,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
         restricciones.fill = GridBagConstraints.BOTH;
         restricciones.weightx = 1.5; 
         
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelPrimeras4Semanas.add(new JLabel());
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -113,7 +114,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelPrimeras4Semanas.add(dia);
             }
 
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelPrimeras4Semanas.add(new JLabel());
             for (int i = 0; i < 4; i++) {
                 JLabel j = new JLabel(" V");
                 gridBag.setConstraints (j, restricciones); 
@@ -132,7 +134,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelPrimeras4Semanas.add(j);
             }
 
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelPrimeras4Semanas.add(new JLabel("Tierra media"));
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -142,7 +145,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelPrimeras4Semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelPrimeras4Semanas.add(new JLabel("Narnia"));
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -152,7 +156,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelPrimeras4Semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelPrimeras4Semanas.add(new JLabel("Asgard"));
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -162,7 +167,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelPrimeras4Semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelPrimeras4Semanas.add(new JLabel("Namek"));
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -181,7 +187,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
             jPanelSegundas4semanas.setLayout(gridBag);
             restricciones.fill = GridBagConstraints.BOTH;
             restricciones.weightx = 1.5; 
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelSegundas4semanas.add(new JLabel());
             for (int i = 12; i < 24; i++) {
                 if (i==23) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -191,7 +198,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelSegundas4semanas.add(dia);
             }
 
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelSegundas4semanas.add(new JLabel());
             for (int i = 0; i < 4; i++) {
                 JLabel j = new JLabel(" V");
                 gridBag.setConstraints (j, restricciones); 
@@ -210,7 +218,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelSegundas4semanas.add(j);
             }
 
-            restricciones.gridwidth=12;
+            restricciones.gridwidth=13;
+            jPanelSegundas4semanas.add(new JLabel("Tierra Media"));
             for (int i = 12; i < 24; i++) {
                 if (i==23) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -220,7 +229,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelSegundas4semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelSegundas4semanas.add(new JLabel("Narnia"));
             for (int i = 12; i < 24; i++) {
                 if (i==23) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -230,7 +240,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelSegundas4semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelSegundas4semanas.add(new JLabel("Asgard"));
             for (int i = 12; i < 24; i++) {
                 if (i==23) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -240,7 +251,8 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 jPanelSegundas4semanas.add(j);
             }
 
-            restricciones.gridwidth= 12;
+            restricciones.gridwidth= 13;
+            jPanelSegundas4semanas.add(new JLabel("Namek"));
             for (int i = 12; i < 24; i++) {
                 if (i==23) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;

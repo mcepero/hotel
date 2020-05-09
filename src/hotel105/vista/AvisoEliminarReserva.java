@@ -33,6 +33,7 @@ public class AvisoEliminarReserva extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabelAviso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelAviso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelAviso.setText("¿Desea eliminar la reserva?");
 
@@ -71,7 +72,7 @@ public class AvisoEliminarReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonEliminar))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();

@@ -47,6 +47,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
     private int asistentes;
    
     public DiasDisponibles(NuevaReserva nr) {
+        setResizable(false);
         numerosDias = (Date[]) salones.get(4);
         semana=true;
         this.nuevaReserva=nr;
@@ -56,7 +57,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
         diasS4 = (char[]) salones.get(3);
         initComponents();
         jButtonPrimeras4.setVisible(false);
-        anadir();
+        anadir();  
     }
 
     public void anadir(){        
@@ -135,7 +136,7 @@ public class DiasDisponibles extends javax.swing.JFrame {
             }
 
             restricciones.gridwidth=13;
-            jPanelPrimeras4Semanas.add(new JLabel("Tierra media"));
+            jPanelPrimeras4Semanas.add(new JLabel("Tierra Media"));
             for (int i = 0; i < 12; i++) {
                 if (i==11) {
                    restricciones.gridwidth = GridBagConstraints.REMAINDER;
@@ -448,16 +449,17 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jPanelSegundas4semanas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(832, 394));
 
         javax.swing.GroupLayout jPanelPrimeras4SemanasLayout = new javax.swing.GroupLayout(jPanelPrimeras4Semanas);
         jPanelPrimeras4Semanas.setLayout(jPanelPrimeras4SemanasLayout);
         jPanelPrimeras4SemanasLayout.setHorizontalGroup(
             jPanelPrimeras4SemanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
+            .addGap(0, 171, Short.MAX_VALUE)
         );
         jPanelPrimeras4SemanasLayout.setVerticalGroup(
             jPanelPrimeras4SemanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         jButtonAceptar.setText("Aceptar");
@@ -536,23 +538,26 @@ public class DiasDisponibles extends javax.swing.JFrame {
         jPanelSegundas4semanas.setLayout(jPanelSegundas4semanasLayout);
         jPanelSegundas4semanasLayout.setHorizontalGroup(
             jPanelSegundas4semanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGap(0, 171, Short.MAX_VALUE)
         );
         jPanelSegundas4semanasLayout.setVerticalGroup(
             jPanelSegundas4semanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelCambioSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCambioSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,12 +565,9 @@ public class DiasDisponibles extends javax.swing.JFrame {
                 .addComponent(jPanelCambioSemana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(65, 65, 65)))
+                    .addComponent(jPanelPrimeras4Semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelSegundas4semanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
                 .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -608,6 +610,9 @@ public class DiasDisponibles extends javax.swing.JFrame {
             nuevaReserva.getjLabelDiaSeleccionado().setText("Fecha seleccionada: " + new SimpleDateFormat("dd/MM/yyyy").format(diaSeleccionado));
             nuevaReserva.comprobarDiasSlider();
             dispose();
+        }else{
+            AvisoDiaSeleccionado a = new AvisoDiaSeleccionado();
+            a.setVisible(true);
         }
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
